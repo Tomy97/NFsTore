@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@headlessui/vue': ^1.7.0
   '@heroicons/vue': ^2.0.10
+  '@vee-validate/i18n': ^4.7.1
   '@vee-validate/rules': ^4.7.1
   '@vitejs/plugin-vue': ^3.0.3
   '@vueuse/core': ^9.1.1
@@ -23,6 +24,7 @@ specifiers:
 dependencies:
   '@headlessui/vue': 1.7.3_vue@3.2.41
   '@heroicons/vue': 2.0.12_vue@3.2.41
+  '@vee-validate/i18n': 4.7.1
   '@vee-validate/rules': 4.7.1
   '@vueuse/core': 9.3.1_vue@3.2.41
   bootstrap: 5.2.0
@@ -125,6 +127,10 @@ packages:
 
   /@types/web-bluetooth/0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
+    dev: false
+
+  /@vee-validate/i18n/4.7.1:
+    resolution: {integrity: sha512-W4HjkcnaU4ykSFw6ZoveCPk9ysqmCiidkeKSljEgPHfWx1OFsep9z6N/JaaHRgAtHSSCCSrCc/WfhzdM5x/Gbw==}
     dev: false
 
   /@vee-validate/rules/4.7.1:
