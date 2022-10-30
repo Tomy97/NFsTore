@@ -1,44 +1,30 @@
 <script setup lang="ts">
-import "../views/styles/Login.css";
+import AppScreenBackground from "../components/AppScreenBackground.vue";
+import LoginForm from "../components/form/LoginForm.vue";
 </script>
 <template>
   <div class="container">
     <div class="screen">
       <div class="screen__content">
-        <form class="login">
-          <div class="login__field">
-            <input
-              type="text"
-              class="login__input"
-              placeholder="Email"
-            />
-          </div>
-          <div class="login__field">
-            <input
-              type="password"
-              class="login__input"
-              placeholder="Password"
-            />
-          </div>
-          <button class="button login__submit">
-            <span class="button__text">Submit</span>
-          </button>
-        </form>
+        <LoginForm />
       </div>
-      <div class="screen__background">
-        <span
-          class="screen__background__shape screen__background__shape4"
-        ></span>
-        <span
-          class="screen__background__shape screen__background__shape3"
-        ></span>
-        <span
-          class="screen__background__shape screen__background__shape2"
-        ></span>
-        <span
-          class="screen__background__shape screen__background__shape1"
-        ></span>
-      </div>
+      <AppScreenBackground />
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+.screen {
+  background: linear-gradient(90deg, #5d54a4, #7c78b8);
+  position: relative;
+  height: 600px;
+  width: 360px;
+  box-shadow: 0px 0px 24px #5c5696;
+  border-radius: 15px;
+}
+
+.screen__content {
+  z-index: 1;
+  position: relative;
+  height: 100%;
+}
+</style>
