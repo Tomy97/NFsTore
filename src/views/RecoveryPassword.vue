@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import AppCardForms from "../components/card/AppCardForms.vue";
-import RegisterForm from "../components/form/RegisterForm.vue";
+import RecoveryPassword from "../components/form/RecoveryPassword.vue";
 </script>
 <template>
-  <AppCardForms title="Register">
-    <template #form-components>
-      <RegisterForm />
-    </template>
+  <AppCardForms title="Recovery Password">
+    <RecoveryPassword />
   </AppCardForms>
 </template>
 

@@ -3,7 +3,7 @@ import AppCardForms from '../components/card/AppCardForms.vue'
 import LoginForm from '../components/form/LoginForm.vue'
 </script>
 <template>
-  <AppCardForms>
+  <AppCardForms title="Login">
     <template #form-components>
       <LoginForm />
     </template>

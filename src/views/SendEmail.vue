@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import AppCardForms from "../components/card/AppCardForms.vue";
-import RegisterForm from "../components/form/RegisterForm.vue";
+import EmailConfirmForm from "../components/form/EmailConfirmForm.vue";
 </script>
+
 <template>
-  <AppCardForms title="Register">
+  <AppCardForms subtitle="Ingrese su email. Recibira un email de confirmacion">
     <template #form-components>
-      <RegisterForm />
+      <EmailConfirmForm />
     </template>
   </AppCardForms>
 </template>
-
-<style lang="scss" scoped></style>

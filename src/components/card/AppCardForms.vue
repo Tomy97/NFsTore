@@ -1,30 +1,31 @@
 <script setup lang="ts">
-import AppScreenBackground from '../AppScreenBackground.vue'
+defineProps<{
+  title?: string;
+  subtitle?: string;
+}>();
 </script>
 <template>
   <div class="container">
-    <div class="screen">
-      <div class="screen__content">
-        <slot name="form-components"></slot>
+    <div class="row justify-content-center pt-5">
+      <div class="col-12 col-lg-5">
+        <div class="card rounded-3 border-0 shadow">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 pt-5 text-center">
+                <h2 v-if="title">
+                  {{ title }}
+                </h2>
+                <h6 v-if="subtitle">
+                  {{ subtitle }}
+                </h6>
+              </div>
+              <div class="col-12">
+                <slot name="form-components"></slot>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <AppScreenBackground />
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.screen {
-  background: linear-gradient(90deg, #5d54a4, #7c78b8);
-  position: relative;
-  height: 600px;
-  width: 360px;
-  box-shadow: 0px 0px 24px #5c5696;
-  border-radius: 15px;
-}
-
-.screen__content {
-  z-index: 1;
-  position: relative;
-  height: 100%;
-}
-</style>

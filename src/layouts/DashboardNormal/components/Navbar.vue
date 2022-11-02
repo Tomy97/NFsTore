@@ -1,31 +1,25 @@
 <script setup lang="ts">
 const menuLinks = [
   {
-    name: 'Explore',
-    path: '#',
+    name: "Explore",
   },
   {
-    name: 'Stats',
-    path: '#',
+    name: "Stats",
   },
   {
-    name: 'Resources',
-    path: '#',
+    name: "Resources",
   },
   {
-    name: 'Create',
-    path: '#',
+    name: "Create",
   },
-]
+];
 </script>
 <template>
   <div class="wrapper-container">
     <div class="wrapper-padding">
       <nav class="navbar-main">
         <div class="logo-container">
-          <h2>
-            NftStore
-          </h2>
+          <h2>NftStore</h2>
         </div>
         <ul>
           <div class="fresnel-container">
@@ -35,7 +29,7 @@ const menuLinks = [
                 v-for="(items, index) in menuLinks"
                 :key="index"
               >
-                <router-link :to="{ name: items.path }">
+                <router-link to="#">
                   {{ items.name }}
                 </router-link>
               </li>
