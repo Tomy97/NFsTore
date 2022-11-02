@@ -20,7 +20,7 @@ const props = defineProps({
 
 const { value, errorMessage } = useField(props.label, {
   required: required,
-  confirmed: confirmed,
+  confirmed: '@password',
   min: 6,
 });
 </script>
@@ -28,6 +28,7 @@ const { value, errorMessage } = useField(props.label, {
   <div class="login__field">
     <input
       type="password"
+      name="passwordConfirm"
       class="login__input"
       :class="errorMessage ? 'space-bottom-style' : ''"
       v-model="value"

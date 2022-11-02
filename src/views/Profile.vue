@@ -1,6 +1,8 @@
 <script setup lang="ts"></script>
 <template>
-  <div>Recovery Form</div>
+  <div>
+    <h1>Profile</h1>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

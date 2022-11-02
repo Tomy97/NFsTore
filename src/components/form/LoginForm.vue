@@ -13,6 +13,7 @@ const form = reactive({
 const handleSubmit = (values: any) => {
   console.log(values);
 };
+
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
@@ -25,7 +26,7 @@ const handleSubmit = (values: any) => {
         </router-link>
       </div>
       <div class="col-12">
-        Todavia tenes una cuenta?
+        Todavia no tenes una cuenta?
         <router-link :to="{ name: 'Register' }" class="text-decoration-none"
           >Registrate</router-link
         >

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { Form } from "vee-validate";
 import { reactive } from "vue";
+import routes from "../../routes";
 import BtnSubmit from "../buttons/BtnSubmit.vue";
 import FormInputEmail from "./inputs/FormInputEmail.vue";
 
 const handleSubmit = (values: any) => {
-  console.log(values);
+  if (values) {
+    routes.push({ name: "RecoveryPassword" });
+  }
 };
 
 const form = reactive({

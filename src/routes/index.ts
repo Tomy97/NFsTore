@@ -1,19 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import DashboardNormal from "../layouts/DashboardNormal/index.vue";
 import DashboardForms from "../layouts/DashboardForms/index.vue";
+import Dashboard from "../layouts/Dashboard/index.vue";
 
 const routes = createRouter({
   history: createWebHistory(""),
   routes: [
     {
-      path: "/home",
-      component: DashboardNormal,
+      path: "",
+      component: Dashboard,
       children: [
         {
-          path: "",
-          name: "Dashboard",
+          path: "/home",
+          name: "Home",
           component: () => import("../views/Home.vue"),
+        },
+        {
+          path: "/profile",
+          name: "Profile",
+          component: () => import("../views/Profile.vue"),
         },
       ],
     },
@@ -35,13 +40,11 @@ const routes = createRouter({
           path: "send-email",
           name: "SendEmail",
           component: () => import("../views/SendEmail.vue"),
-          children: [
-            {
-              path: "recovery-password",
-              name: "RecoveryPassword",
-              component: () => import("../views/RecoveryPassword.vue"),
-            },
-          ],
+        },
+        {
+          path: "recovery-password",
+          name: "RecoveryPassword",
+          component: () => import("../views/RecoveryPassword.vue"),
         },
       ],
     },
