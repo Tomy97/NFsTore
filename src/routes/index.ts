@@ -37,7 +37,7 @@ const routes = createRouter({
           component: () => import("../views/SendEmail.vue"),
           children: [
             {
-              path: "/recovery-password",
+              path: "recovery-password",
               name: "RecoveryPassword",
               component: () => import("../views/RecoveryPassword.vue"),
             },
