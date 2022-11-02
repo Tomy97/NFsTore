@@ -20,6 +20,11 @@ const routes = createRouter({
           name: "Profile",
           component: () => import("../views/Profile.vue"),
         },
+        {
+          path: "comprar",
+          name: "Comprar",
+          component: () => import("../views/Purchase.vue"),
+        },
       ],
     },
     {
