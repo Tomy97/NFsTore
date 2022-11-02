@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { defineRule, useField } from "vee-validate";
-import { required, min } from "@vee-validate/rules";
+import { defineRule, useField } from 'vee-validate'
+import { required, min } from '@vee-validate/rules'
 
-defineRule("required", required);
-defineRule("min", min);
+defineRule('required', required)
+defineRule('min', min)
 
-defineEmits(["update:modelValue"]);
+defineEmits(['update:modelValue'])
 
 const props = defineProps({
   label: {
     type: String,
-    default: "Password",
+    default: 'Password',
   },
   modelValue: {
     type: String,
@@ -19,12 +19,12 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-});
+})
 
 const { value, errorMessage } = useField(props.label, {
   required: required,
-  min: 8,
-});
+  min: 6,
+})
 </script>
 <template>
   <div class="login__field">

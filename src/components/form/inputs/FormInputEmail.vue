@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { defineRule, useField } from "vee-validate";
-import { required, email } from "@vee-validate/rules";
+import { defineRule, useField } from 'vee-validate'
+import { required, email } from '@vee-validate/rules'
 
-defineRule("required", required);
-defineRule("email", email);
-defineEmits(["update:modelValue"]);
+defineRule('required', required)
+defineRule('email', email)
+defineEmits(['update:modelValue'])
 
 const props = defineProps({
   label: {
     type: String,
-    default: "Email",
+    default: 'Email',
   },
   modelValue: {
     type: String,
   },
-});
+})
 
 const { value, errorMessage } = useField(props.label, {
   required: required,
   email: true,
-});
+})
 </script>
 <template>
   <div class="login__field">

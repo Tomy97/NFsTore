@@ -14,10 +14,11 @@
     "@vee-validate/i18n": "^4.7.1",
     "@vee-validate/rules": "^4.7.1",
     "@vueuse/core": "^9.1.1",
-    "bootstrap": "5.2.0",
+    "bootstrap": "5.2.2",
     "bootstrap-icons": "^1.9.1",
     "pinia": "^2.0.20",
     "sass": "^1.54.5",
+    "swiper": "^8.4.4",
     "vee-validate": "^4.6.6",
     "vue": "^3.2.37",
     "vue-router": "4"

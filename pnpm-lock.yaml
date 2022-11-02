@@ -8,11 +8,12 @@ specifiers:
   '@vitejs/plugin-vue': ^3.0.3
   '@vueuse/core': ^9.1.1
   autoprefixer: ^10.4.12
-  bootstrap: 5.2.0
+  bootstrap: 5.2.2
   bootstrap-icons: ^1.9.1
   pinia: ^2.0.20
   postcss: ^8.4.18
   sass: ^1.54.5
+  swiper: ^8.4.4
   tailwindcss: ^3.2.0
   typescript: ^4.6.4
   vee-validate: ^4.6.6
@@ -27,10 +28,11 @@ dependencies:
   '@vee-validate/i18n': 4.7.1
   '@vee-validate/rules': 4.7.1
   '@vueuse/core': 9.3.1_vue@3.2.41
-  bootstrap: 5.2.0
+  bootstrap: 5.2.2
   bootstrap-icons: 1.9.1
   pinia: 2.0.23_l7r24p6nevbtlimqmqcwa3ouhu
   sass: 1.55.0
+  swiper: 8.4.4
   vee-validate: 4.7.0_vue@3.2.41
   vue: 3.2.41
   vue-router: 4.1.5_vue@3.2.41
@@ -348,10 +350,10 @@ packages:
     resolution: {integrity: sha512-d4ZkO30MIkAhQ2nNRJqKXJVEQorALGbLWTuRxyCTJF96lRIV6imcgMehWGJUiJMJhglN0o2tqLIeDnMdiQEE9g==}
     dev: false
 
-  /bootstrap/5.2.0:
-    resolution: {integrity: sha512-qlnS9GL6YZE6Wnef46GxGv1UpGGzAwO0aPL1yOjzDIJpeApeMvqV24iL+pjr2kU4dduoBA9fINKWKgMToobx9A==}
+  /bootstrap/5.2.2:
+    resolution: {integrity: sha512-dEtzMTV71n6Fhmbg4fYJzQsw1N29hJKO1js5ackCgIpDcGid2ETMGC6zwSYw09v05Y+oRdQ9loC54zB1La3hHQ==}
     peerDependencies:
-      '@popperjs/core': ^2.11.5
+      '@popperjs/core': ^2.11.6
     dev: false
 
   /braces/3.0.2:
@@ -428,6 +430,12 @@ packages:
   /dlv/1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
     dev: true
+
+  /dom7/4.0.4:
+    resolution: {integrity: sha512-DSSgBzQ4rJWQp1u6o+3FVwMNnT5bzQbMb+o31TjYYeRi05uAcpF8koxdfzeoe5ElzPmua7W7N28YJhF7iEKqIw==}
+    dependencies:
+      ssr-window: 4.0.2
+    dev: false
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
@@ -975,10 +983,23 @@ packages:
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
 
+  /ssr-window/4.0.2:
+    resolution: {integrity: sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==}
+    dev: false
+
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /swiper/8.4.4:
+    resolution: {integrity: sha512-jA/8BfOZwT8PqPSnMX0TENZYitXEhNa7ZSNj1Diqh5LZyUJoBQaZcqAiPQ/PIg1+IPaRn/V8ZYVb0nxHMh51yw==}
+    engines: {node: '>= 4.7.0'}
+    requiresBuild: true
+    dependencies:
+      dom7: 4.0.4
+      ssr-window: 4.0.2
+    dev: false
 
   /tailwindcss/3.2.0:
     resolution: {integrity: sha512-ARh/W0uH5UlWIC2nn02V0+5fyF0k6qZliyt4QYic2upOhPUE/Spu1EURNc9txJ3+4j8OEmdigqfDpw4d2tA4vA==}
