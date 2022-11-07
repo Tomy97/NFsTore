@@ -26,7 +26,7 @@ const handleSubmit = (values: any) => {
         </router-link>
       </div>
       <div class="col-12">
-        Todavia no tenes una cuenta?
+        Todavia no tenes cuenta?
         <router-link :to="{ name: 'Register' }" class="text-decoration-none"
           >Registrate</router-link
         >

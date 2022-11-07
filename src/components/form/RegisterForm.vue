@@ -31,7 +31,7 @@ const handleSubmit = (values: any) => {
     <FormInputPasswordConfirm v-model="form.passwordConfirm" />
     <div class="row justify-content-center">
       <div class="col-12 text-center py-2">
-        <span> Ya tenes una cuenta? </span>
+        <span> Ya tenes cuenta? </span>
         <router-link :to="{ name: 'Login' }" class="text-decoration-none"> Ingresar </router-link>
       </div>
       <div class="col-12 text-center pt-3 pb-5">
