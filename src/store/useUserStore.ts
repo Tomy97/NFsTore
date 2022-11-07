@@ -6,7 +6,9 @@ export const useUserStore = defineStore({
     userData: null,
   }),
   getters: {
-    isAuth: (state: any) => {},
+    isAuth: (state: any) => {
+      
+    },
   },
   actions: {
     async login({ commit }: any, userData: any) {},

@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
-import BtnLogin from "../../../components/buttons/BtnLogin.vue";
 
 const menuLinks = [
   {
+    text: "home",
     name: "Home",
   },
   {
+    text: "productos",
     name: "Productos",
   },
   {
-    name: "Compra",
+    text: "compra",
+    name: "Comprar",
   },
   {
+    text: "crear",
     name: "Crear",
   },
 ];
@@ -42,8 +45,11 @@ const oauth = ref<boolean>(false);
         id="navbarNavAltMarkup"
       >
         <div class="navbar-nav" v-for="(item, index) of menuLinks" :key="index">
-          <router-link to="#" class="nav-link text-style">
-            {{ item.name }}
+          <router-link
+            :to="{ name: item.name }"
+            class="nav-link text-style text-capitalize"
+          >
+            {{ item.text }}
           </router-link>
         </div>
         <div class="d-flex justify-content-center ms-0 ms-lg-4">

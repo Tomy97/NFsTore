@@ -11,12 +11,12 @@ const routes = createRouter({
       component: Dashboard,
       children: [
         {
-          path: "/home",
+          path: "home",
           name: "Home",
           component: () => import("../views/Home.vue"),
         },
         {
-          path: "/profile",
+          path: "profile",
           name: "Profile",
           component: () => import("../views/Profile.vue"),
         },
@@ -24,6 +24,16 @@ const routes = createRouter({
           path: "comprar",
           name: "Comprar",
           component: () => import("../views/Purchase.vue"),
+        },
+        {
+          path: "productos",
+          name: "Productos",
+          component: () => import("../views/ProductsViews.vue"),
+        },
+        {
+          path: "crear",
+          name: "Crear",
+          component: () => import("../views/CreateViews.vue"),
         },
       ],
     },

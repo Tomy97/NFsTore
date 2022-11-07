@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import AppCardNft from "../components/card/AppCardNft.vue";
 
 const dataCollections = ref([
   {
@@ -30,7 +31,11 @@ const dataCollections = ref([
 ]);
 </script>
 <template>
-  <div>
-    <h5>Esto es el home</h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <AppCardNft />
+      </div>
+    </div>
   </div>
 </template>
