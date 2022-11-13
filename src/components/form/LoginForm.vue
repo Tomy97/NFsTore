@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import Vue, { onMounted, reactive } from 'vue'
 import { Form } from 'vee-validate'
 import BtnSubmit from '../buttons/BtnSubmit.vue'
 import FormInputEmail from './inputs/FormInputEmail.vue'
 import FormInputPassword from './inputs/FormInputPassword.vue'
 import { UseSweetAlert } from '../../composables/UseSweetAlert'
+import { useAuthStore } from '../../store/useAuthStore'
+import routes from '../../routes'
+
+// const { login } = useUserStore()
 
 const form = reactive({
   email: '',
   password: '',
 })
 
+const { login } = useAuthStore()
+
 const handleSubmit = async (values: any) => {
   try {
     if (values) {
-      console.log('Te logueaste correctamente', values)
+      login(values)
+      // routes.push('Home')
     }
   } catch (error) {
     console.error(error)

@@ -38,6 +38,7 @@ const handleSubmit = (values: any) => {
         <BtnSubmit />
       </div>
     </div>
+    {{ form }}
   </Form>
 </template>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
-import BtnLogin from '../../../components/buttons/BtnLogin.vue'
+import { useAuthStore } from '../../../store/useAuthStore'
 
 const menuLinks = [
   {
@@ -22,7 +22,10 @@ const menuLinks = [
   },
 ]
 
-const oauth = ref<boolean>(false)
+const { logOut } = useAuthStore()
+const auth = ref<boolean>(false)
+const user = localStorage.getItem('state')
+console.log(user)
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -54,13 +57,16 @@ const oauth = ref<boolean>(false)
           </router-link>
         </div>
         <div class="d-flex justify-content-center ms-0 ms-lg-4">
-          <template v-if="oauth">
+          <template v-if="auth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
-              Tomas Test
+              test test
             </router-link>
+            <button class="btn btn-sm" @click="logOut">
+              log out
+            </button>
           </template>
           <template v-else>
             <BtnDinamic :path="{ name: 'Login' }" text="Login" />
