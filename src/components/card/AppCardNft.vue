@@ -6,11 +6,11 @@ defineProps<{
 }>();
 </script>
 <template>
-  <div class="card" style="width: 18rem">
+  <div class="card">
     <img :src="image" class="card-img-top" :alt="title" />
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
-      <BtnDinamic path="Comprar" text="Comprar" />
+      <slot name="button-components"></slot>
     </div>
   </div>
 </template>

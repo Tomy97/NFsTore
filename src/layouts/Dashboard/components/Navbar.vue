@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
-import BtnLogin from "../../../components/buttons/BtnLogin.vue";
+import { ref } from 'vue'
+import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
+import BtnLogin from '../../../components/buttons/BtnLogin.vue'
 
 const menuLinks = [
   {
-    name: "Home",
+    text: 'home',
+    name: 'Home',
   },
   {
-    name: "Productos",
+    text: 'productos',
+    name: 'Productos',
   },
   {
-    name: "Compra",
+    text: 'compra',
+    name: 'Compra',
   },
   {
-    name: "Crear",
+    text: 'crear',
+    name: 'Crear',
   },
-];
+]
 
-const oauth = ref<boolean>(false);
+const oauth = ref<boolean>(false)
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -42,8 +46,11 @@ const oauth = ref<boolean>(false);
         id="navbarNavAltMarkup"
       >
         <div class="navbar-nav" v-for="(item, index) of menuLinks" :key="index">
-          <router-link to="#" class="nav-link text-style">
-            {{ item.name }}
+          <router-link
+            :to="item.name"
+            class="nav-link text-style text-capitalize"
+          >
+            {{ item.text }}
           </router-link>
         </div>
         <div class="d-flex justify-content-center ms-0 ms-lg-4">
@@ -56,7 +63,7 @@ const oauth = ref<boolean>(false);
             </router-link>
           </template>
           <template v-else>
-            <BtnDinamic path="Login" text="Login" />
+            <BtnDinamic :path="{ name: 'Login' }" text="Login" />
           </template>
         </div>
       </div>

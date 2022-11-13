@@ -5,9 +5,9 @@ defineProps<{
 }>();
 </script>
 <template>
-  <div class="container">
+  <div class="container-fluid vh-100 vw-100">
     <div class="row justify-content-center pt-5">
-      <div class="col-12 col-lg-5">
+      <div class="col-12 col-md-8 col-lg-3">
         <div class="card rounded-3 border-0 shadow">
           <div class="card-body">
             <div class="row">

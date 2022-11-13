@@ -1,19 +1,25 @@
 <script setup lang="ts">
-import { reactive } from "vue";
-import { Form } from "vee-validate";
-import BtnSubmit from "../buttons/BtnSubmit.vue";
-import FormInputEmail from "./inputs/FormInputEmail.vue";
-import FormInputPassword from "./inputs/FormInputPassword.vue";
+import { onMounted, reactive } from 'vue'
+import { Form } from 'vee-validate'
+import BtnSubmit from '../buttons/BtnSubmit.vue'
+import FormInputEmail from './inputs/FormInputEmail.vue'
+import FormInputPassword from './inputs/FormInputPassword.vue'
+import { UseSweetAlert } from '../../composables/UseSweetAlert'
 
 const form = reactive({
-  email: "",
-  password: "",
-});
+  email: '',
+  password: '',
+})
 
-const handleSubmit = (values: any) => {
-  console.log(values);
-};
-
+const handleSubmit = async (values: any) => {
+  try {
+    if (values) {
+      console.log('Te logueaste correctamente', values)
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
@@ -27,9 +33,9 @@ const handleSubmit = (values: any) => {
       </div>
       <div class="col-12">
         Todavia no tenes una cuenta?
-        <router-link :to="{ name: 'Register' }" class="text-decoration-none"
-          >Registrate</router-link
-        >
+        <router-link :to="{ name: 'Register' }" class="text-decoration-none">
+          Registrate
+        </router-link>
       </div>
       <div class="col-12 pt-4 pb-5">
         <BtnSubmit />
