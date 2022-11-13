@@ -20,10 +20,10 @@ const props = defineProps({
 })
 
 const { input, errorMessage, meta } = useInputField(
-  'passwordConfirmation',
+  props.label,
   'confirmar contraseña',
   {
-    confirmed: '@password',
+    confirmed: '@Password',
     required: required,
     min: 6,
   },
@@ -35,9 +35,8 @@ const { input, errorMessage, meta } = useInputField(
       type="password"
       class="login__input"
       :class="errorMessage ? 'space-bottom-style' : ''"
-      v-model="input"
       :error="!meta.valid && meta.validated"
-      @input="$emit('update:modelValue', input)"
+      v-model="input"
       placeholder="Confirm Password"
       :required="required"
       autocomplete="off"
