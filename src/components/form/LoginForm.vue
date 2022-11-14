@@ -2,16 +2,13 @@
 import Vue, { onMounted, reactive } from 'vue'
 import { Form } from 'vee-validate'
 import BtnSubmit from '../buttons/BtnSubmit.vue'
-import FormInputEmail from './inputs/FormInputEmail.vue'
 import FormInputPassword from './inputs/FormInputPassword.vue'
-import { UseSweetAlert } from '../../composables/UseSweetAlert'
 import { useAuthStore } from '../../store/useAuthStore'
 import routes from '../../routes'
-
-// const { login } = useUserStore()
+import FormInputText from './inputs/FormInputText.vue'
 
 const form = reactive({
-  email: '',
+  user: '',
   password: '',
 })
 
@@ -30,7 +27,11 @@ const handleSubmit = async (values: any) => {
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
-    <FormInputEmail v-model="form.email" />
+    <FormInputText
+      label="Username"
+      placeholder="Username"
+      v-model="form.user"
+    />
     <FormInputPassword v-model="form.password" />
     <div class="row pt-3 text-center">
       <div class="col-12 mb-3">
