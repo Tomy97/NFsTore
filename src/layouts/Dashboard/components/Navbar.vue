@@ -1,31 +1,35 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
-import { useAuthStore } from '../../../store/useAuthStore'
+import { ref } from "vue";
+import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
+import { useAuthStore } from "../../../store/useAuthStore";
+import { useUserStore } from "../../../store/useUserStore";
 
 const menuLinks = [
   {
-    text: 'home',
-    name: 'Home',
+    text: "home",
+    name: "Home",
   },
   {
-    text: 'productos',
-    name: 'Productos',
+    text: "productos",
+    name: "Productos",
   },
   {
-    text: 'compra',
-    name: 'Compra',
+    text: "compra",
+    name: "Compra",
   },
   {
-    text: 'crear',
-    name: 'Crear',
+    text: "crear",
+    name: "Crear",
   },
-]
+];
 
-const { logOut } = useAuthStore()
-const auth = ref<boolean>(false)
-const user = localStorage.getItem('state')
-console.log(user)
+const { logOut } = useAuthStore();
+const { auth } = useUserStore();
+console.log(auth);
+
+// const auth = ref<boolean>(false)
+const user = localStorage.getItem("user");
+console.log(user);
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -62,11 +66,9 @@ console.log(user)
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
-              test test
+              {{}}
             </router-link>
-            <button class="btn btn-sm" @click="logOut">
-              log out
-            </button>
+            <button class="btn btn-sm" @click="logOut">log out</button>
           </template>
           <template v-else>
             <BtnDinamic :path="{ name: 'Login' }" text="Login" />

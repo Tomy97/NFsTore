@@ -1,38 +1,31 @@
 <script setup lang="ts">
-import Vue, { onMounted, reactive } from 'vue'
-import { Form } from 'vee-validate'
-import BtnSubmit from '../buttons/BtnSubmit.vue'
-import FormInputPassword from './inputs/FormInputPassword.vue'
-import { useAuthStore } from '../../store/useAuthStore'
-import routes from '../../routes'
-import FormInputText from './inputs/FormInputText.vue'
-
-const form = reactive({
-  user: '',
-  password: '',
-})
-
-const { login } = useAuthStore()
+import { Form } from "vee-validate";
+import BtnSubmit from "../buttons/BtnSubmit.vue";
+import FormInputPassword from "./inputs/FormInputPassword.vue";
+import routes from "../../routes";
+import FormInputText from "./inputs/FormInputText.vue";
+import { useUserStore } from "../../store/useUserStore";
+const user = useUserStore();
 
 const handleSubmit = async (values: any) => {
   try {
     if (values) {
-      login(values)
-      // routes.push('Home')
+      user.login(values);
+      routes.push("Home");
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
     <FormInputText
       label="Username"
       placeholder="Username"
-      v-model="form.user"
+      v-model="user.$state.user"
     />
-    <FormInputPassword v-model="form.password" />
+    <FormInputPassword v-model="user.$state.password" />
     <div class="row pt-3 text-center">
       <div class="col-12 mb-3">
         <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
