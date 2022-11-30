@@ -1,6 +1,8 @@
 <script setup lang="ts">
-  import TheSectionCarousel from '../components/TheSectionCarousel.vue'
+import TheSectionCarousel from '../components/TheSectionCarousel.vue'
 </script>
 <template>
-  <TheSectionCarousel />
+  <main class="container-fluid">
+    <TheSectionCarousel />
+  </main>
 </template>
