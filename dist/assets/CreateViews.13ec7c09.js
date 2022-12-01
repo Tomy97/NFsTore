@@ -1,0 +1,1 @@
+import{_ as e,f as t,k as s,l as c}from"./index.741dba9b.js";const o={},r=c("h5",null," Vista de crear ",-1),a=[r];function n(_,l){return t(),s("div",null,a)}const i=e(o,[["render",n]]);export{i as default};
