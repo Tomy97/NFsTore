@@ -1,11 +1,11 @@
 <script setup lang="ts">
 defineProps<{
-  path: string;
+  path: string | object;
   text: string;
 }>();
 </script>
 <template>
-  <router-link :to="{ name: path }" class="btn btn-custom">
+  <router-link :to="path" class="btn btn-custom">
     {{ text }}
   </router-link>
 </template>

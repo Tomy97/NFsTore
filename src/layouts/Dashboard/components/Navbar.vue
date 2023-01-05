@@ -1,27 +1,31 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
+  import { ref } from "vue";
+  import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
+  import { useAuthStore } from "../../../store/useAuthStore";
 
-const menuLinks = [
-  {
-    text: "home",
-    name: "Home",
-  },
-  {
-    text: "productos",
-    name: "Productos",
-  },
-  {
-    text: "compra",
-    name: "Comprar",
-  },
-  {
-    text: "crear",
-    name: "Crear",
-  },
-];
+  const menuLinks = [
+    {
+      text: "home",
+      name: "Home"
+    },
+    {
+      text: "productos",
+      name: "Productos"
+    },
+    {
+      text: "compra",
+      name: "Compra"
+    },
+    {
+      text: "crear",
+      name: "Crear"
+    }
+  ];
 
-const oauth = ref<boolean>(false);
+  const { isAuth, logOut } = useAuthStore();
+
+  const user = localStorage.getItem("user");
+  console.log(user);
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -46,23 +50,24 @@ const oauth = ref<boolean>(false);
       >
         <div class="navbar-nav" v-for="(item, index) of menuLinks" :key="index">
           <router-link
-            :to="{ name: item.name }"
+            :to="item.name"
             class="nav-link text-style text-capitalize"
           >
             {{ item.text }}
           </router-link>
         </div>
         <div class="d-flex justify-content-center ms-0 ms-lg-4">
-          <template v-if="oauth">
+          <template v-if="isAuth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
-              Tomas Test
+              {{}}
             </router-link>
+            <button class="btn btn-sm" @click="logOut">log out</button>
           </template>
           <template v-else>
-            <BtnDinamic path="Login" text="Login" />
+            <BtnDinamic :path="{ name: 'Login' }" text="Login" />
           </template>
         </div>
       </div>
@@ -71,10 +76,10 @@ const oauth = ref<boolean>(false);
 </template>
 
 <style lang="scss" scoped>
-.navbar-nav {
-  .text-style {
-    color: #000;
-    font-weight: normal;
+  .navbar-nav {
+    .text-style {
+      color: #000;
+      font-weight: normal;
+    }
   }
-}
 </style>

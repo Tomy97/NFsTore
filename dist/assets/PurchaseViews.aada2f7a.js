@@ -1,0 +1,1 @@
+import{_ as e,f as s,k as c,l as t}from"./index.741dba9b.js";const o={},a=t("h4",null,"vista de compras",-1),n=[a];function r(_,l){return s(),c("div",null,n)}const i=e(o,[["render",r]]);export{i as default};

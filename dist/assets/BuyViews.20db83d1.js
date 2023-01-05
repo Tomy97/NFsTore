@@ -1,0 +1,1 @@
+import{_ as e,f as s,k as o,l as t}from"./index.741dba9b.js";const c={},n=t("span",null," Comprar ",-1),r=[n];function a(_,l){return s(),o("div",null,r)}const f=e(c,[["render",a]]);export{f as default};
