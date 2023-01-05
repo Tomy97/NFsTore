@@ -1,26 +1,25 @@
-import axios from 'axios'
-import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
+import axios from "axios";
+import { defineStore } from "pinia";
+import { ref } from "vue";
+import { IUser } from "../interfaces/IUser";
+import { loginService } from "../services/login.service";
 
-interface AuthStore {
-  token?: string | null
-  refreshToken?: string | null
-  expire?: number | null
-}
+export const useAuthStore = defineStore("auth", () => {
+  const user = ref<IUser>({
+    user: "",
+    password: ""
+  });
 
-const baseurl = `${import.meta.env.VITE_API_URL}/users}`
-export const useAuthStore = defineStore({
-  id: 'auth',
-  state: () => ({
-    user: useStorage('user', {} as AuthStore),
-  }),
-  getters: {},
-  actions: {
-    async login(userData: { email: string; password: string }) {
-      await axios.post(baseurl, userData)
-    },
-    async logOut() {
-      localStorage.clear()
-    },
-  },
-})
+  const login = async (user: IUser) => {
+    await loginService(user);
+  };
+  const logOut = () => {
+    localStorage.clear();
+  };
+
+  return {
+    user,
+    login,
+    logOut
+  };
+});

@@ -1,31 +1,33 @@
 <script setup lang="ts">
-import { Form } from "vee-validate";
-import BtnSubmit from "../buttons/BtnSubmit.vue";
-import FormInputPassword from "./inputs/FormInputPassword.vue";
-import routes from "../../routes";
-import FormInputText from "./inputs/FormInputText.vue";
-import { useUserStore } from "../../store/useUserStore";
-const user = useUserStore();
+  import { Form } from "vee-validate";
+  import BtnSubmit from "../buttons/BtnSubmit.vue";
+  import FormInputPassword from "./inputs/FormInputPassword.vue";
+  import routes from "../../routes";
+  import FormInputText from "./inputs/FormInputText.vue";
+  import { useAuthStore } from "../../store/useAuthStore";
 
-const handleSubmit = async (values: any) => {
-  try {
-    if (values) {
-      user.login(values);
-      routes.push("Home");
+  const { user, login } = useAuthStore();
+
+  const handleSubmit = async (values: any) => {
+    try {
+      if (values) {
+        console.log(values)
+        // login(values);
+        // routes.push("Home");
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
-};
+  };
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
     <FormInputText
       label="Username"
       placeholder="Username"
-      v-model="user.$state.user"
+      v-model="user.user"
     />
-    <FormInputPassword v-model="user.$state.password" />
+    <FormInputPassword v-model="user.password" />
     <div class="row pt-3 text-center">
       <div class="col-12 mb-3">
         <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
