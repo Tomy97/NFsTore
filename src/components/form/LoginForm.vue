@@ -5,15 +5,20 @@
   import routes from "../../routes";
   import FormInputText from "./inputs/FormInputText.vue";
   import { useAuthStore } from "../../store/useAuthStore";
+  import { loginService } from "../../services/auth.service";
+  import { useRouter } from "vue-router";
+  import { reactive } from "vue";
 
-  const { user, login } = useAuthStore();
-
+  const form = reactive({
+    user: "",
+    password: ""
+  });
+  const router = useRouter();
   const handleSubmit = async (values: any) => {
     try {
       if (values) {
-        console.log(values)
-        // login(values);
-        // routes.push("Home");
+        await loginService(values);
+        router.push({ name: "Home" });
       }
     } catch (error) {
       console.error(error);
@@ -25,9 +30,9 @@
     <FormInputText
       label="Username"
       placeholder="Username"
-      v-model="user.user"
+      v-model="form.user"
     />
-    <FormInputPassword v-model="user.password" />
+    <FormInputPassword v-model="form.password" />
     <div class="row pt-3 text-center">
       <div class="col-12 mb-3">
         <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
