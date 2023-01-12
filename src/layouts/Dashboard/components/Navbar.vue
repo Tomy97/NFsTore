@@ -1,35 +1,31 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
-import { useAuthStore } from "../../../store/useAuthStore";
-import { useUserStore } from "../../../store/useUserStore";
+  import { ref } from "vue";
+  import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
+  import { useAuthStore } from "../../../store/useAuthStore";
 
-const menuLinks = [
-  {
-    text: "home",
-    name: "Home",
-  },
-  {
-    text: "productos",
-    name: "Productos",
-  },
-  {
-    text: "compra",
-    name: "Compra",
-  },
-  {
-    text: "crear",
-    name: "Crear",
-  },
-];
+  const menuLinks = [
+    {
+      text: "home",
+      name: "Home"
+    },
+    {
+      text: "productos",
+      name: "Productos"
+    },
+    {
+      text: "compra",
+      name: "Compra"
+    },
+    {
+      text: "crear",
+      name: "Crear"
+    }
+  ];
 
-const { logOut } = useAuthStore();
-const { auth } = useUserStore();
-console.log(auth);
+  const { isAuth, logOut } = useAuthStore();
 
-// const auth = ref<boolean>(false)
-const user = localStorage.getItem("user");
-console.log(user);
+  const user = localStorage.getItem("user");
+  console.log(user);
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -61,7 +57,7 @@ console.log(user);
           </router-link>
         </div>
         <div class="d-flex justify-content-center ms-0 ms-lg-4">
-          <template v-if="auth">
+          <template v-if="isAuth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
@@ -80,10 +76,11 @@ console.log(user);
 </template>
 
 <style lang="scss" scoped>
-.navbar-nav {
-  .text-style {
-    color: #000;
-    font-weight: normal;
+  .navbar-nav {
+    .text-style {
+      color: #000;
+      font-weight: normal;
+    }
   }
 }
 
