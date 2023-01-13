@@ -2,6 +2,8 @@
 defineProps<{
   image: string
   title: string
+  user: string
+  price: string
 }>()
 </script>
 <template>
@@ -19,6 +21,12 @@ defineProps<{
               <div class="div-content text-style">
                 {{ title }}
               </div>
+            </div>
+            <div class="div-content text-style">
+              @{{ user }}
+            </div>
+            <div>
+              <img src="../../../dist/etereo.png" class="etereo">{{ price }}
             </div>
           </div>
           <div class="btn-content-flex">
@@ -96,7 +104,7 @@ defineProps<{
               -webkit-box-align: center;
               align-items: center;
               margin: 0px;
-              padding-left: 16px;
+              // padding-left: 16px;
               overflow: hidden;
               word-break: break-all;
               text-overflow: ellipsis;
@@ -108,6 +116,9 @@ defineProps<{
               font-size: 16px;
               color: rgb(4, 17, 29);
             }
+          }
+          .etereo{
+            width: 13px;
           }
         }
         .btn-content-flex {

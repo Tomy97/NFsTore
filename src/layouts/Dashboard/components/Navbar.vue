@@ -31,7 +31,7 @@
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
     <div class="container-fluid">
       <div>
-        <h4>NfsTore</h4>
+        <h4 class="logo"><span>NF</span>s<span>T</span>ore</h4>
       </div>
       <button
         class="navbar-toggler"
@@ -80,6 +80,13 @@
     .text-style {
       color: #000;
       font-weight: normal;
+    }
+  }
+
+  .logo {
+    font-weight: bold;
+    span {
+      color: #18a0fb;
     }
   }
 </style>
