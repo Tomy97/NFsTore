@@ -82,12 +82,11 @@
       font-weight: normal;
     }
   }
-}
 
-.logo{
-  font-weight: bold;
-  span{
-    color: #18a0fb ;
+  .logo {
+    font-weight: bold;
+    span {
+      color: #18a0fb;
+    }
   }
-}
 </style>
