@@ -22,10 +22,10 @@
     }
   ];
 
-  const { isAuth, logOut } = useAuthStore();
+  const { logOut } = useAuthStore();
 
   const user = localStorage.getItem("user");
-  console.log(user);
+  const isAuth = localStorage.getItem("auth");
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -62,7 +62,9 @@
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
-              {{}}
+              {{
+                
+              }}
             </router-link>
             <button class="btn btn-sm" @click="logOut">log out</button>
           </template>
