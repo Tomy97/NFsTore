@@ -21,7 +21,7 @@
                 <div class="col-12 col-lg-6 text-center text-lg-start ">
                   <img
                     :src="user.avatar"
-                    class="bd-placeholder-img rounded-circle image-rouded"
+                    class="rounded-circle image-rouded"
                   />
                 </div>
               </div>
