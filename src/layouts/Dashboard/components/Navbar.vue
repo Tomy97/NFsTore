@@ -22,10 +22,7 @@
     }
   ];
 
-  const { isAuth, logOut } = useAuthStore();
-
-  const user = localStorage.getItem("user");
-  console.log(user);
+  const { user, isAuth, auth,logOut } = useAuthStore();
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -38,11 +35,8 @@
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
       >
-        <i class="bi bi-list"></i>
+        <i class="bi bi-list color-icon"></i>
       </button>
       <div
         class="collapse navbar-collapse justify-content-end"
@@ -56,15 +50,25 @@
             {{ item.text }}
           </router-link>
         </div>
-        <div class="d-flex justify-content-center ms-0 ms-lg-4">
+        <div
+          class="menu-container"
+        >
           <template v-if="isAuth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
-              {{}}
+              <span class="fw-bold">
+                {{ user.name }}
+              </span>
             </router-link>
-            <button class="btn btn-sm" @click="logOut">log out</button>
+            <button class="btn btn-lg fw-bold">
+              <i class="bi bi-wallet"></i>
+            </button>
+
+            <button class="btn btn-lg text-danger fw-bold" @click="logOut">
+              <i class="bi bi-box-arrow-in-right"></i>
+            </button>
           </template>
           <template v-else>
             <BtnDinamic :path="{ name: 'Login' }" text="Login" />
@@ -83,10 +87,26 @@
     }
   }
 
+  .menu-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 10px;
+    @media( max-width: 1024px ){
+      flex-direction: column;
+      margin-left: 0px;
+      
+    }
+  }
+
   .logo {
     font-weight: bold;
     span {
       color: #18a0fb;
     }
+  }
+
+  .color-icon {
+    color: #000;
   }
 </style>

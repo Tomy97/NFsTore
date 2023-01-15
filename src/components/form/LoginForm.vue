@@ -14,10 +14,11 @@
     password: ""
   });
   const router = useRouter();
+  const { login } = useAuthStore();
   const handleSubmit = async (values: any) => {
     try {
       if (values) {
-        await loginService(values);
+        await login(values)
         router.push({ name: "Home" });
       }
     } catch (error) {
