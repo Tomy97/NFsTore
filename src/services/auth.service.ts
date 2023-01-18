@@ -1,4 +1,5 @@
 import axios from "axios";
+import.meta.env.VITE_API_URL as "env";
 
 export const loginService = async (userData: any) => {
   const login = {
