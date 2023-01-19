@@ -1,34 +1,39 @@
 <script setup lang="ts">
-import { reactive } from "vue";
-import { Form } from "vee-validate";
-import { useRouter } from "vue-router";
-import { useAuthStore } from "@store/useAuthStore";
-import { UseSweetAlert } from "@composables/UseSweetAlert";
-import BtnSubmit from "@components/buttons/BtnSubmit.vue";
-import FormInputPassword from "./inputs/FormInputPassword.vue";
-import FormInputText from "./inputs/FormInputText.vue";
+  import { reactive } from "vue";
+  import { Form } from "vee-validate";
+  import { ErrorTypes, useRouter } from "vue-router";
+  import { useAuthStore } from "@store/useAuthStore";
+  import { UseSweetAlert } from "@composables/UseSweetAlert";
+  import BtnSubmit from "@components/buttons/BtnSubmit.vue";
+  import FormInputPassword from "./inputs/FormInputPassword.vue";
+  import FormInputText from "./inputs/FormInputText.vue";
 
-const form = reactive({
-  user: "",
-  password: "",
-});
-const router = useRouter();
-const { login } = useAuthStore();
-const handleSubmit = async (values: any) => {
-  try {
-    if (values) {
-      await login(values);
+  const form = reactive({
+    user: "",
+    password: ""
+  });
+  const router = useRouter();
+  const { login } = useAuthStore();
+  const handleSubmit = async (values: any) => {
+    try {
+      if (values) {
+        await login(values);
+        UseSweetAlert.fire({
+          icon: "success",
+          title: "Bienvenido",
+          text: "Logueado correctamente"
+        });
+        router.push({ name: "Home" });
+      }
+    } catch (error: any) {
       UseSweetAlert.fire({
-        icon: "success",
-        title: "Bienvenido",
-        text: "Logueado correctamente",
+        icon: "error",
+        title: "Oops...",
+        text: `${error.response.data.msg}`
       });
-      router.push({ name: "Home" });
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
-};
+  };
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">

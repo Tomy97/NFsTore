@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref } from "vue";
+  import { computed, ref, watch } from "vue";
   import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
   import { useAuthStore } from "../../../store/useAuthStore";
 
@@ -22,7 +22,24 @@
     }
   ];
 
-  const { user, isAuth, auth,logOut } = useAuthStore();
+  const { user, isAuth } = useAuthStore();
+  const auth = computed(() => {
+    return isAuth;
+  });
+
+  const logOut = async () => {
+    localStorage.clear();
+    location.reload();
+    auth.value = false;
+  };
+
+  watch(
+    auth,
+    (value) => {
+      console.log(value);
+    },
+    { immediate: true }
+  );
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -50,16 +67,14 @@
             {{ item.text }}
           </router-link>
         </div>
-        <div
-          class="menu-container"
-        >
-          <template v-if="isAuth">
+        <div class="menu-container">
+          <template v-if="auth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
               <span class="fw-bold">
-                {{ user.name }}
+                {{ user.name ? user.name : "xd" }}
               </span>
             </router-link>
             <button class="btn btn-lg fw-bold">
@@ -92,7 +107,7 @@
     align-items: center;
     flex-direction: row;
     margin-left: 10px;
-    @media( max-width: 1024px ){
+    @media (max-width: 1024px) {
       flex-direction: column;
       margin-left: 0px;
       margin-top: 1rem;

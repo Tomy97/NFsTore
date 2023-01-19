@@ -4,25 +4,21 @@ import { ref } from "vue";
 import { IUser } from "../interfaces/IUser";
 import { loginService } from "../services/auth.service";
 
-export const useAuthStore = defineStore({
-  id: "auth",
-  state: () => ({
-    user: JSON.parse(localStorage.getItem("user")),
-    auth: false,
-    returnUrl: null
-  }),
-  actions: {
-    async login(user: IUser) {
-      const { usuario } = await loginService(user);
-      this.user = usuario;
-      localStorage.setItem("user", JSON.stringify(usuario));
-      this.auth = true;
-      localStorage.setItem("auth", JSON.stringify(this.auth));
-    },
-    async logout(user: IUser) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("auth");
-      this.auth = !this.auth;
-    }
-  }
+export const useAuthStore = defineStore("auth", () => {
+  const user = ref<IUser>(JSON.parse(localStorage.getItem("user")));
+  const isAuth = ref<boolean>(false);
+
+  const login = async (user: IUser) => {
+    const { usuario } = await loginService(user);
+    localStorage.setItem("user", JSON.stringify(usuario));
+    isAuth.value = true;
+    localStorage.setItem("auth", JSON.stringify(isAuth.value));
+  };
+
+ 
+  return {
+    user,
+    isAuth,
+    login
+  };
 });
