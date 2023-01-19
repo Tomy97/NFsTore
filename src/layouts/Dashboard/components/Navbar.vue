@@ -95,7 +95,8 @@
     @media( max-width: 1024px ){
       flex-direction: column;
       margin-left: 0px;
-      
+      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
   }
 

@@ -21,7 +21,7 @@ const handleSubmit = async (values: any) => {
       UseSweetAlert.fire({
         icon: "success",
         title: "Bienvenido",
-        text: "Te has logueado correctamente",
+        text: "Logueado correctamente",
       });
       router.push({ name: "Home" });
     }
