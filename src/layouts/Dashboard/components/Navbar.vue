@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { computed, ref, watch } from "vue";
   import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
   import { useAuthStore } from "../../../store/useAuthStore";
 
@@ -23,23 +22,11 @@
   ];
 
   const { user, isAuth } = useAuthStore();
-  const auth = computed(() => {
-    return isAuth;
-  });
 
   const logOut = async () => {
     localStorage.clear();
     location.reload();
-    auth.value = false;
   };
-
-  watch(
-    auth,
-    (value) => {
-      console.log(value);
-    },
-    { immediate: true }
-  );
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -68,13 +55,13 @@
           </router-link>
         </div>
         <div class="menu-container">
-          <template v-if="auth">
+          <template v-if="isAuth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
             >
               <span class="fw-bold">
-                {{ user.name ? user.name : "xd" }}
+                {{ user.name }}
               </span>
             </router-link>
             <button class="btn btn-lg fw-bold">

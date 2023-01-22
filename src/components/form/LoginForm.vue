@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { reactive } from "vue";
   import { Form } from "vee-validate";
-  import { ErrorTypes, useRouter } from "vue-router";
+  import { useRouter } from "vue-router";
   import { useAuthStore } from "@store/useAuthStore";
   import { UseSweetAlert } from "@composables/UseSweetAlert";
   import BtnSubmit from "@components/buttons/BtnSubmit.vue";

@@ -8,6 +8,7 @@
   import FormInputText from "./inputs/FormInputText.vue";
   import { registerService } from "../../services/auth.service";
   import { useRouter } from "vue-router";
+  import { UseSweetAlert } from "@composables/UseSweetAlert";
 
   const form = reactive({
     name: "",
@@ -20,9 +21,19 @@
   const router = useRouter();
   const handleSubmit = async (values: any) => {
     try {
-      await registerService(values);
-      router.push({ name: "Login" });
-    } catch (error) {
+      if (values) {
+        UseSweetAlert.fire({
+          title: "Registro exitoso",
+          icon: "success"
+        });
+        await registerService(values);
+        router.push({ name: "Login" });
+      }
+    } catch (error: any) {
+      UseSweetAlert.fire({
+        icon: "error",
+        title: `${error.response.data.msg}`
+      });
       console.error(error);
     }
   };

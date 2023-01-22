@@ -1,14 +1,13 @@
 <script setup lang="ts"></script>
 <template>
-  <div id="footer">
-    <h5>
-      Footer
-    </h5>
+  <div class="footer">
+    <h5 class="text-white">Footer</h5>
   </div>
 </template>
 
-<style> 
-#footer{
-  background-color: aqua;
-}
+<style lang="scss" scoped>
+  .footer {
+    /* min-height: 3.5rem; */
+    background-color: #18a0fb;
+  }
 </style>
