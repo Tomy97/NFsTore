@@ -14,16 +14,23 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@views/*": ["src/views/*"],
-      "@store/*": ["src/store/*"],
-      "@composables/*": ["src/composables/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-    },
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@store/*": ["./src/store/*"],
+      "@views/*": ["./src/views/*"],
+      "@composables/*": ["./src/composables/*"],
+      "@services/*": ["./src/services/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@interfaces/*": ["./src/interfaces/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "types": [
-    "vue-sweetalert2"
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "env.d.ts"
   ],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "types": ["vue-sweetalert2"]
 }
