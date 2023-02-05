@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import { Form } from "vee-validate";
-import { ref } from "vue";
-import routes from "../../routes";
-import BtnSubmit from "../buttons/BtnSubmit.vue";
-import FormInputPassword from "./inputs/FormInputPassword.vue";
-import FormInputPasswordConfirm from "./inputs/FormInputPasswordConfirm.vue";
-const handleSubmit = (values: any) => {
-  console.log(values);
+  import { Form } from "vee-validate";
+  import { ref } from "vue";
+  import routes from "../../routes";
+  import BtnSubmit from "../buttons/BtnSubmit.vue";
+  import FormInputPassword from "./inputs/FormInputPassword.vue";
+  import FormInputPasswordConfirm from "./inputs/FormInputPasswordConfirm.vue";
 
-  if (values) {
-    routes.push({ name: "Login" });
-  } else {
-    console.log("Las contraseñas no coinciden");
-  }
-};
-const form = ref({
-  password: "",
-  passwordConfirm: "",
-});
+  const form = ref({
+    password: "",
+    passwordConfirm: ""
+  });
+
+  const handleSubmit = (values: any) => {
+    console.log(values);
+
+    if (values) {
+      routes.push({ name: "Login" });
+    } else {
+      console.log("Las contraseñas no coinciden");
+    }
+  };
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
@@ -31,7 +33,7 @@ const form = ref({
     </div>
     <div class="row justify-content-center py-3">
       <div class="col-12 col-lg-7 text-center">
-        <BtnSubmit />
+        <BtnSubmit text="enviar" />
       </div>
     </div>
   </Form>

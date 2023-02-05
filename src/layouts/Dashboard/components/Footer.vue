@@ -7,7 +7,8 @@
 
 <style lang="scss" scoped>
   .footer {
-    /* min-height: 3.5rem; */
+    margin-top: 3rem;
+    min-height: 3.5rem;
     background-color: #18a0fb;
   }
 </style>

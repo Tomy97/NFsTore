@@ -14,23 +14,24 @@
         <AppCard #body>
           <div class="row">
             <div class="col-12">
-              <div class="row">
+              <div class="row px-0 px-lg-3">
                 <div class="col-12">
                   <h3 class="text-center">Perfil del usuario</h3>
                 </div>
-                <div class="col-12 col-lg-6 text-center text-lg-start ">
-                  <img
-                    :src="user.avatar"
-                    class="rounded-circle image-rouded"
-                  />
+                <div class="col-lg-4 text-center text-lg-start my-4">
+                  <img :src="user.avatar" class="rounded-circle image-rouded" />
                 </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-12 my-4 my-lg-0 col-lg-4">
-                  <span> Nombre: {{ user.name }} </span>
-                </div>
-                <div class="col-12 col-lg-4">
-                  <span> Email: {{ user.email }} </span>
+                <div class="col-lg-8 my-4">
+                  <div
+                    class="row justify-content-start text-center text-lg-start"
+                  >
+                    <div class="col-lg-6 my-4 my-lg-0">
+                      <p>Nombre: {{ user.name }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <p>Email: {{ user.email }}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

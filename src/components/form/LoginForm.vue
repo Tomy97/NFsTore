@@ -2,8 +2,8 @@
   import { reactive } from "vue";
   import { Form } from "vee-validate";
   import { useRouter } from "vue-router";
-  import { useAuthStore } from "@store/useAuthStore";
-  import { UseSweetAlert } from "@composables/UseSweetAlert";
+  import { useAuthStore } from "../../store/useAuthStore";
+  import { UseSweetAlert } from "../../composables/UseSweetAlert";
   import BtnSubmit from "@components/buttons/BtnSubmit.vue";
   import FormInputPassword from "./inputs/FormInputPassword.vue";
   import FormInputText from "./inputs/FormInputText.vue";
@@ -56,7 +56,7 @@
         </router-link>
       </div>
       <div class="col-12 pt-4 pb-5">
-        <BtnSubmit />
+        <BtnSubmit text="Enviar" />
       </div>
     </div>
   </Form>

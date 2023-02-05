@@ -4,7 +4,6 @@
   import AppSwiper from "../components/AppSwiper.vue";
   import BtnDinamic from "../components/buttons/BtnDinamic.vue";
   import AppCardNft from "../components/card/AppCardNft.vue";
-  import { useBuyingStore } from "@store/useBuyingStore";
 
   const dataCollections = ref([
     {
@@ -44,7 +43,9 @@
     }
   ]);
 
-  const { handleReceiveData } = useBuyingStore();
+  const handleReceiveData = (item: any) => {
+    console.log(item);
+  };
 </script>
 <template>
   <h1>Explorar, coleccionar y vender NFT</h1>
