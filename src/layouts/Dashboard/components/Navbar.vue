@@ -1,38 +1,34 @@
 <script setup lang="ts">
-import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
-import { useAuthStore } from '../../../store/useAuthStore'
-import { storeToRefs } from 'pinia'
+  import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
+  import { useAuthStore } from "../../../store/useAuthStore";
+  import { storeToRefs } from "pinia";
 
-const menuLinks = [
-  {
-    text: 'home',
-    name: 'Home',
-  },
-  {
-    text: 'productos',
-    name: 'Productos',
-  },
-  {
-    text: 'compra',
-    name: 'Compra',
-  },
-  {
-    text: 'crear',
-    name: 'Crear',
-  },
-]
+  const menuLinks = [
+    {
+      text: "home",
+      name: "Home"
+    },
+    {
+      text: "productos",
+      name: "Productos"
+    },
+    {
+      text: "compra",
+      name: "Compra"
+    },
+    {
+      text: "crear",
+      name: "Crear"
+    }
+  ];
 
-const authStore = useAuthStore()
+  const authStore = useAuthStore();
 
-const { user, isAuth } = storeToRefs(authStore)
-
-console.log('esta autenticado', isAuth.value)
-console.log('usuario', user.value)
-
-const logOut = async () => {
-  localStorage.clear()
-  location.reload()
-}
+  const { user, isAuth } = storeToRefs(authStore);
+  const logOut = async () => {
+    localStorage.clear();
+    location.reload();
+  };
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
@@ -72,7 +68,7 @@ const logOut = async () => {
               class="text-decoration-none text-black"
             >
               <span class="fw-bold">
-                {{ user.name }}
+                {{ user.user }}
               </span>
             </router-link>
             <button class="btn btn-lg fw-bold">
@@ -93,34 +89,34 @@ const logOut = async () => {
 </template>
 
 <style lang="scss" scoped>
-.navbar-nav {
-  .text-style {
+  .navbar-nav {
+    .text-style {
+      color: #000;
+      font-weight: normal;
+    }
+  }
+
+  .menu-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 10px;
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      margin-left: 0px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .logo {
+    font-weight: bold;
+    span {
+      color: #18a0fb;
+    }
+  }
+
+  .color-icon {
     color: #000;
-    font-weight: normal;
   }
-}
-
-.menu-container {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-left: 10px;
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    margin-left: 0px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-}
-
-.logo {
-  font-weight: bold;
-  span {
-    color: #18a0fb;
-  }
-}
-
-.color-icon {
-  color: #000;
-}
 </style>
