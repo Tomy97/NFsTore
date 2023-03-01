@@ -24,10 +24,6 @@
           '320': {
             slidesPerView: 1
           },
-          '768': {
-            slidesPerView: 2,
-            spaceBetween: 60
-          },
           '1024': {
             slidesPerView: 4,
             spaceBetween: 50

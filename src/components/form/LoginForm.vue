@@ -13,11 +13,11 @@
     password: ""
   });
   const router = useRouter();
-  const { login } = useAuthStore();
+  const authStore = useAuthStore();
   const handleSubmit = async (values: any) => {
     try {
       if (values) {
-        await login(values);
+        await authStore.login(values);
         UseSweetAlert.fire({
           icon: "success",
           title: "Bienvenido",
