@@ -34,34 +34,27 @@
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
     <div class="container-fluid">
       <div>
-        <h4 class="logo">
-          <span>NF</span>
+        <h4 class="fw-bold">
+          <span class="text-primary">NF</span>
           s
-          <span>T</span>
+          <span class="text-primary">T</span>
           ore
         </h4>
       </div>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavAltMarkup"
-      >
-        <i class="bi bi-list color-icon"></i>
+      <button class="navbar-toggler" type="button">
+        <i class="bi bi-list"></i>
       </button>
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarNavAltMarkup"
-      >
-        <div class="navbar-nav" v-for="(item, index) of menuLinks" :key="index">
-          <router-link
-            :to="item.name"
-            class="nav-link text-style text-capitalize"
-          >
+      <div class="collapse navbar-collapse justify-content-end">
+        <div
+          class="text-black fw-normal mx-0 mx-lg-2"
+          v-for="(item, index) of menuLinks"
+          :key="index"
+        >
+          <router-link :to="item.name" class="nav-link text-capitalize">
             {{ item.text }}
           </router-link>
         </div>
-        <div class="menu-container">
+        <div>
           <template v-if="isAuth">
             <router-link
               :to="{ name: 'Profile' }"
@@ -87,36 +80,3 @@
     </div>
   </nav>
 </template>
-
-<style lang="scss" scoped>
-  .navbar-nav {
-    .text-style {
-      color: #000;
-      font-weight: normal;
-    }
-  }
-
-  .menu-container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-left: 10px;
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      margin-left: 0px;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-  }
-
-  .logo {
-    font-weight: bold;
-    span {
-      color: #18a0fb;
-    }
-  }
-
-  .color-icon {
-    color: #000;
-  }
-</style>

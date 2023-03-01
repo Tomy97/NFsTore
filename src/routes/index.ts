@@ -12,37 +12,37 @@ const routes = createRouter({
       redirect: "home",
       children: [
         {
-          path: "home",
+          path: "/home",
           name: "Home",
           component: () => import("../views/HomeViews.vue")
         },
         {
-          path: "profile",
+          path: "/profile",
           name: "Profile",
           component: () => import("../views/ProfileViews.vue")
         },
         {
-          path: "productos",
+          path: "/productos",
           name: "Productos",
           component: () => import("../views/Products.vue")
         },
         {
-          path: "compra",
+          path: "/compra",
           name: "Compra",
           component: () => import("../views/BuyViews.vue")
         },
         {
-          path: "comprar/:id",
+          path: "/comprar/:id",
           name: "Comprar",
           component: () => import("../views/PurchaseViews.vue")
         },
         {
-          path: "comprar/:id/compra-exitosa",
+          path: "/comprar/:id/compra-exitosa",
           name: "CompraExitosa",
           component: () => import("../views/BuyingSuccess.vue")
         },
         {
-          path: "crear",
+          path: "/crear",
           name: "Crear",
           component: () => import("../views/CreateViews.vue")
         }

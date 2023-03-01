@@ -20,10 +20,10 @@
   };
 </script>
 <template>
-  <div class="container vh-100">
+  <section class="container">
     <div class="row">
       <AppCard #body>
-        <div class="row px-0 px-md-5">
+        <div class="row px-3 px-lg-5">
           <div class="col-12 text-center">
             <h5>Comprar Nft</h5>
           </div>
@@ -34,7 +34,7 @@
               class="img-width rounded img-fluid"
             />
           </div>
-          <div class="col-12 col-lg-9 ps-5">
+          <div class="col-12 col-lg-9 py-4">
             <div class="row">
               <div class="col-12">
                 <h5>{{ compra.name }}</h5>
@@ -77,5 +77,5 @@
         </div>
       </AppCard>
     </div>
-  </div>
+  </section>
 </template>
