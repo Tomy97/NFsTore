@@ -24,14 +24,12 @@
 
   const authStore = useAuthStore();
 
-  const { user, isAuth } = storeToRefs(authStore);
-  const logOut = async () => {
-    localStorage.clear();
-    location.reload();
-  };
+  const { user } = storeToRefs(authStore);
+
+  console.log("isAuth desde el componente", authStore.isAuth);
 </script>
 <template>
-  <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
+  <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 py-3 position-sticky">
     <div class="container-fluid">
       <div>
         <h4 class="fw-bold">
@@ -55,7 +53,7 @@
           </router-link>
         </div>
         <div>
-          <template v-if="isAuth">
+          <template v-if="authStore.isAuth">
             <router-link
               :to="{ name: 'Profile' }"
               class="text-decoration-none text-black"
@@ -68,7 +66,10 @@
               <i class="bi bi-wallet"></i>
             </button>
 
-            <button class="btn btn-lg text-danger fw-bold" @click="logOut">
+            <button
+              class="btn btn-lg text-danger fw-bold"
+              @click="authStore.logOut"
+            >
               <i class="bi bi-box-arrow-in-right"></i>
             </button>
           </template>
