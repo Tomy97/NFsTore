@@ -5,21 +5,16 @@ import { loginService } from "../services/auth.service";
 
 export const useAuthStore = defineStore("auth", () => {
   const isAuth = ref<boolean>(false);
-  const user = ref<any>(localStorage.getItem("user"));
-  if (user) {
-    user.value = JSON.parse(user.value);
-  } else {
-    const res = ref(null);
-  }
+  const user = ref<any>(localStorage.getItem("user") ? localStorage.getItem("user") : null);
 
-  const login = async (user: IUser) => {
+  const login = async (userData: IUser) => {
     try {
-      const { usuario } = await loginService(user);
+      const { usuario } = await loginService(userData);
+      
       if (usuario) {
-        const userData = JSON.stringify(usuario);
-        localStorage.setItem("user", userData);
+        localStorage.setItem("user", JSON.stringify(usuario));
         isAuth.value = true;
-        localStorage.setItem("auth", JSON.stringify(isAuth));
+        localStorage.setItem("auth", JSON.stringify(isAuth.value));
       }
     } catch (error) {
       console.error(error);

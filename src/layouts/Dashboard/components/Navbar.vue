@@ -1,38 +1,49 @@
 <script setup lang="ts">
-  import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
-  import { useAuthStore } from "../../../store/useAuthStore";
+import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
+import { useAuthStore } from '../../../store/useAuthStore'
+import { storeToRefs } from 'pinia'
 
-  const menuLinks = [
-    {
-      text: "home",
-      name: "Home"
-    },
-    {
-      text: "productos",
-      name: "Productos"
-    },
-    {
-      text: "compra",
-      name: "Compra"
-    },
-    {
-      text: "crear",
-      name: "Crear"
-    }
-  ];
+const menuLinks = [
+  {
+    text: 'home',
+    name: 'Home',
+  },
+  {
+    text: 'productos',
+    name: 'Productos',
+  },
+  {
+    text: 'compra',
+    name: 'Compra',
+  },
+  {
+    text: 'crear',
+    name: 'Crear',
+  },
+]
 
-  const { user, isAuth } = useAuthStore();
+const authStore = useAuthStore()
 
-  const logOut = async () => {
-    localStorage.clear();
-    location.reload();
-  };
+const { user, isAuth } = storeToRefs(authStore)
+
+console.log('esta autenticado', isAuth.value)
+console.log('usuario', user.value)
+
+const logOut = async () => {
+  localStorage.clear()
+  location.reload()
+}
 </script>
 <template>
   <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 position-sticky">
     <div class="container-fluid">
       <div>
-        <h4 class="logo"><span>NF</span>s<span>T</span>ore</h4>
+        <h4 class="logo">
+          <span>NF</span>
+          s
+          <span>T</span>
+          ore
+        </h4>
       </div>
       <button
         class="navbar-toggler"
@@ -82,34 +93,34 @@
 </template>
 
 <style lang="scss" scoped>
-  .navbar-nav {
-    .text-style {
-      color: #000;
-      font-weight: normal;
-    }
-  }
-
-  .menu-container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-left: 10px;
-    @media (max-width: 1024px) {
-      flex-direction: column;
-      margin-left: 0px;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-  }
-
-  .logo {
-    font-weight: bold;
-    span {
-      color: #18a0fb;
-    }
-  }
-
-  .color-icon {
+.navbar-nav {
+  .text-style {
     color: #000;
+    font-weight: normal;
   }
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 10px;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    margin-left: 0px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.logo {
+  font-weight: bold;
+  span {
+    color: #18a0fb;
+  }
+}
+
+.color-icon {
+  color: #000;
+}
 </style>
