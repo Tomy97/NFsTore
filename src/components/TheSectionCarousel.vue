@@ -4,7 +4,13 @@
   import AppSwiper from "../components/AppSwiper.vue";
   import BtnDinamic from "../components/buttons/BtnDinamic.vue";
   import AppCardNft from "../components/card/AppCardNft.vue";
+  import { useNFTStore } from '../store/useNFTStore';
+  import { storeToRefs } from "pinia";
+// Como chacer una peticion a mi api donde me liste los nfts, hacer en un servicio y agregarlo en el store, el store esta hecho en piniaytypescript
 
+  const nftStore = useNFTStore();
+  const { nfts } = storeToRefs(nftStore);
+  nftStore.fetchAllNFTs()
   const dataCollections = ref([
     {
       id: 1,
@@ -51,7 +57,7 @@
   <h1>Explorar, coleccionar y vender NFT</h1>
   <AppSwiper>
     <template #slide-component>
-      <swiper-slide v-for="item of dataCollections" :key="item.id">
+      <swiper-slide v-for="item of nfts" :key="item.id">
         <AppCardNft
           :image="item.src"
           :title="item.name"
