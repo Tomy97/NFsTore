@@ -13,6 +13,8 @@
       <swiper
         :modules="modules"
         centeredSlides
+        observeParents
+        observer
         :space-between="60"
         :autoplay="{
           delay: 2500,
@@ -23,6 +25,10 @@
         :breakpoints="{
           '320': {
             slidesPerView: 1
+          },
+          '768': {
+            slidesPerView: 2,
+            spaceBetween: 30
           },
           '1024': {
             slidesPerView: 4,

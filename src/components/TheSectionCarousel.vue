@@ -1,54 +1,17 @@
 <script setup lang="ts">
-  import { ref } from "vue";
+  import { onMounted, ref } from "vue";
   import { SwiperSlide } from "swiper/vue";
   import AppSwiper from "../components/AppSwiper.vue";
   import BtnDinamic from "../components/buttons/BtnDinamic.vue";
   import AppCardNft from "../components/card/AppCardNft.vue";
-  import { useNFTStore } from '../store/useNFTStore';
+  import { useNFTStore } from "../store/useNFTStore";
   import { storeToRefs } from "pinia";
-// Como chacer una peticion a mi api donde me liste los nfts, hacer en un servicio y agregarlo en el store, el store esta hecho en piniaytypescript
+  import Swiper from "swiper";
 
   const nftStore = useNFTStore();
   const { nfts } = storeToRefs(nftStore);
-  nftStore.fetchAllNFTs()
-  const dataCollections = ref([
-    {
-      id: 1,
-      price: "312",
-      name: "PROOF Collective",
-      user: "Mark",
-      src: "https://i.seadn.io/gae/uKX9nuMgFMvSXVH-m11abul1YKW1GxiDcKQ2gRlCDJAhZ61i20lJlwi0aGLaRTNk-r9vveXjOvMYDTvODz236PtcYGoyyLHLJ5hLd_8"
-    },
-    {
-      id: 2,
-      price: "322",
-      name: "ZenAcademy",
-      user: "Lorezo",
-      src: "https://i.seadn.io/gae/IaUEHOT78TUQ3SiinUGv829DeFVj7kht_kFMz2U6x6S6yxQlI_2V6KvSq9C25F5bxSi4gF8X0_Vbbigr17O-iDQiLhG9bXSyycnUJbQ"
-    },
-    {
-      id: 3,
-      price: "332",
-      name: "Poolsuite - Executive Member",
-      user: "XBXtuki",
-      src: "https://i.seadn.io/gae/n-Ry4Vw7lEu_gqtRmuyFa54BsvKEmQC4bu-mi4DL31n-ZTiFIhJR0VGd305GSWpGg7bJhhMA4-0960_Lul6P_46q_HlFrHCTfeV4eQ"
-    },
-    {
-      id: 4,
-      price: "342",
-      name: "AFAR - RAFA Genesis",
-      user: "XBXtuki",
-      src: "https://i.seadn.io/gcs/files/7cd8d177dff7a496e72922501e2df643.png"
-    },
-    {
-      id: 5,
-      price: "352",
-      name: "KINGSHIP",
-      user: "ELK68",
-      src: "https://i.seadn.io/gcs/files/ef01ed322ffb9762c830c4fc72ce60ff.jpg"
-    }
-  ]);
 
+  onMounted(async () => await nftStore.fetchAllNFTs());
   const handleReceiveData = (item: any) => {
     console.log(item);
   };
@@ -59,7 +22,7 @@
     <template #slide-component>
       <swiper-slide v-for="item of nfts" :key="item.id">
         <AppCardNft
-          :image="item.src"
+          :src="item.image_url"
           :title="item.name"
           :user="item.user"
           :price="item.price"

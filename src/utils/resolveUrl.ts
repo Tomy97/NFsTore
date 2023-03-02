@@ -3,7 +3,7 @@ enum EntornosURL {
 }
 
 enum Entornos {
-  LOCAL = "http://localhost:5000"
+  LOCAL = "http://localhost:4000"
 }
 
 const resolve = () => {
