@@ -1,36 +1,42 @@
-import { defineStore } from 'pinia';
-import { nftService} from '../services/nft.service';
-import { INft } from 'interfaces/INft';
+import { defineStore } from "pinia";
+import { nftService } from "../services/nft.service";
+import { INft } from "interfaces/INft";
+import { ref } from "vue";
 
-export const useNFTStore = defineStore({
-  id: 'nft',
-  state: () => ({
-    nfts: [] as INft[],
-    selectedNFT: {} as INft
-  }),
+export const useNFTStore = defineStore("nft", () => {
+  const nft = ref<INft[]>([]);
+  const selectedNFT = ref<INft>({} as INft);
 
-  actions: {
-    async fetchAllNFTs() {
-      this.nfts = await nftService.getAll();
-    },
+  const fetchAllNFTs = async () => {
+    nft.value = await nftService.getAll();
+  };
 
-    async createNFT(nft: INft) {
-      await nftService.create(nft);
-      await this.fetchAllNFTs();
-    },
+  const createNFT = async (nft: INft) => {
+    await nftService.create(nft);
+    await fetchAllNFTs();
+  };
 
-    async updateNFT(nft: INft) {
-      await nftService.update(nft.id, nft);
-      await this.fetchAllNFTs();
-    },
+  const updateNFT = async (nft: INft) => {
+    await nftService.update(nft.id, nft);
+    await fetchAllNFTs();
+  };
 
-    async deleteNFT(id: number) {
-      await nftService.delete(id);      
-      await this.fetchAllNFTs();
-    },
+  const deleteNFT = async (id: number) => {
+    await nftService.delete(id);
+    await fetchAllNFTs();
+  };
 
-    selectNFT(nft: INft) {
-      this.selectedNFT = nft;
-    },
-  }
+  const selectNFT = (nft: INft) => {
+    selectedNFT.value = nft;
+  };
+
+  return {
+    nft,
+    selectedNFT,
+    fetchAllNFTs,
+    createNFT,
+    updateNFT,
+    deleteNFT,
+    selectNFT
+  };
 });

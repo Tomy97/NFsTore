@@ -1,5 +1,5 @@
 export interface INft {
-  id: string;
+  id: string | number;
   name: string;
   image_url: string;
   price: string;

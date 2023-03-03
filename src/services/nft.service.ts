@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import { INft } from "../interfaces/INft";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,7 +19,7 @@ export const nftService = {
     return response.data;
   },
 
-  async update(id: number, nft: INft): Promise<INft> {
+  async update(id: number | string, nft: INft): Promise<INft> {
     const response = await axios.put(`${API_URL}/nft/${id}`, nft);
     return response.data;
   },
