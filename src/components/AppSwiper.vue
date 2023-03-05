@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { Swiper } from "swiper/vue";
-  import { Autoplay, Pagination, Navigation } from "swiper";
+  import { Autoplay, Pagination } from "swiper";
   import "swiper/scss";
   import "swiper/scss/navigation";
   import "swiper/scss/pagination";
 
-  const modules = [Navigation, Pagination, Autoplay];
+  const modules = [Pagination, Autoplay];
 </script>
 <template>
   <div class="row">
@@ -20,7 +20,6 @@
           delay: 2500,
           disableOnInteraction: false
         }"
-        navigation
         loop
         :breakpoints="{
           '320': {

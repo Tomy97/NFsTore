@@ -1,14 +1,14 @@
 import { defineStore } from "pinia";
 import { nftService } from "../services/nft.service";
 import { INft } from "interfaces/INft";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 export const useNFTStore = defineStore("nft", () => {
-  const nft = ref<INft[]>([]);
+  const nfts = ref<INft[]>([]);
   const selectedNFT = ref<INft>({} as INft);
 
   const fetchAllNFTs = async () => {
-    nft.value = await nftService.getAll();
+    nfts.value = await nftService.getAll();
   };
 
   const createNFT = async (nft: INft) => {
@@ -30,13 +30,17 @@ export const useNFTStore = defineStore("nft", () => {
     selectedNFT.value = nft;
   };
 
+  onMounted(async () => {
+    await fetchAllNFTs();
+  });
+
   return {
-    nft,
+    nfts,
     selectedNFT,
     fetchAllNFTs,
     createNFT,
     updateNFT,
     deleteNFT,
-    selectNFT
+    selectNFT,
   };
 });

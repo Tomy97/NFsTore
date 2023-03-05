@@ -2,8 +2,8 @@
   defineProps<{
     src: string;
     title: string;
-    user: string;
-    price: string;
+    user?: string;
+    price: number;
   }>();
 </script>
 <template>

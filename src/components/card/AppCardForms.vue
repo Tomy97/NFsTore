@@ -7,7 +7,7 @@ defineProps<{
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center pt-5">
-      <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-3">
+      <div class="col-md-6 col-lg-5 col-xl-4">
         <div class="card rounded-3 border-0 shadow">
           <div class="card-body">
             <div class="row">

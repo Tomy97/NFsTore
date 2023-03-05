@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import { Form } from "vee-validate";
   import { ref } from "vue";
-  import routes from "../../routes";
-  import BtnSubmit from "../buttons/BtnSubmit.vue";
-  import FormInputPassword from "./inputs/FormInputPassword.vue";
-  import FormInputPasswordConfirm from "./inputs/FormInputPasswordConfirm.vue";
+  import routes from "../../../routes";
+  import BtnSubmit from "../../buttons/BtnSubmit.vue";
+  import FormInputPassword from "./FormInputPassword.vue";
+  import FormInputPasswordConfirm from "./FormInputPasswordConfirm.vue";
 
   const form = ref({
     password: "",

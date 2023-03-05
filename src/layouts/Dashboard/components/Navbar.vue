@@ -1,35 +1,33 @@
 <script setup lang="ts">
-  import BtnDinamic from "../../../components/buttons/BtnDinamic.vue";
-  import { useAuthStore } from "../../../store/useAuthStore";
-  import { storeToRefs } from "pinia";
+import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
+import { useAuthStore } from '../../../store/useAuthStore'
+import { storeToRefs } from 'pinia'
 
-  const menuLinks = [
-    {
-      text: "home",
-      name: "Home"
-    },
-    {
-      text: "productos",
-      name: "Productos"
-    },
-    {
-      text: "compra",
-      name: "Compra"
-    },
-    {
-      text: "crear",
-      name: "Crear"
-    }
-  ];
+const menuLinks = [
+  {
+    text: 'home',
+    name: 'Home',
+  },
+  {
+    text: 'productos',
+    name: 'Productos',
+  },
+  {
+    text: 'compra',
+    name: 'Compra',
+  },
+  {
+    text: 'crear',
+    name: 'Crear',
+  },
+]
 
-  const authStore = useAuthStore();
-
-  const { user } = storeToRefs(authStore);
-
-  console.log("isAuth desde el componente", authStore.isAuth);
+const authStore = useAuthStore()
 </script>
 <template>
-  <nav class="navbar navbar-expand-lg bg-white px-0 px-lg-5 py-3 position-sticky">
+  <nav
+    class="navbar navbar-expand-lg bg-white px-0 px-lg-5 py-3 position-sticky"
+  >
     <div class="container-fluid">
       <div>
         <h4 class="fw-bold">
@@ -59,7 +57,7 @@
               class="text-decoration-none text-black"
             >
               <span class="fw-bold">
-                {{ user.user }}
+                {{ authStore.user?.user }}
               </span>
             </router-link>
             <button class="btn btn-lg fw-bold">

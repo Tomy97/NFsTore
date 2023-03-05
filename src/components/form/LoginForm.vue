@@ -44,13 +44,15 @@
     />
     <FormInputPassword v-model="form.password" />
     <div class="row pt-3 text-center">
-      <div class="col-12 mb-3">
+      <div class="col-12">
         <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
           Olvide mi contraseña
         </router-link>
       </div>
-      <div class="col-12">
+      <div class="col-12 my-2">
         Todavia no tenes una cuenta?
+      </div>
+      <div class="col-12">
         <router-link :to="{ name: 'Register' }" class="text-decoration-none">
           Registrate
         </router-link>
