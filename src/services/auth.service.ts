@@ -1,13 +1,12 @@
 import axios from "axios";
-import { IUser } from "../interfaces/IUser";
 
+const API_URL = import.meta.env.VITE_API_URL;
 export const loginService = async (userData: any) => {
   const login = {
     user: userData.Username,
-    password: userData.Password
+    password: userData.Password,
   };
-  const { data } = await axios.post("http://localhost:3000/users/login", login);
-
+  const { data } = await axios.post(`${API_URL}/users/login`, login);
   return data;
 };
 
@@ -16,11 +15,8 @@ export const registerService = async (userData: any) => {
     name: userData.Name,
     user: userData.Username,
     email: userData.Email,
-    password: userData.Password
+    password: userData.Password,
   };
-  const { data } = await axios.post(
-    "http://localhost:3000/users/register",
-    register
-  );
+  const { data } = await axios.post(`${API_URL}/users/register`, register);
   return data;
 };

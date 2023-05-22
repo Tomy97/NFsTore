@@ -1,26 +1,36 @@
 <script setup lang="ts">
-  import { Form } from "vee-validate";
-  import BtnSubmit from "../buttons/BtnSubmit.vue";
-  import FormInputPassword from "./inputs/FormInputPassword.vue";
-  import routes from "../../routes";
-  import FormInputText from "./inputs/FormInputText.vue";
-  import { useAuthStore } from "../../store/useAuthStore";
-  import { loginService } from "../../services/auth.service";
-  import { useRouter } from "vue-router";
   import { reactive } from "vue";
+  import { Form } from "vee-validate";
+  import { useRouter } from "vue-router";
+  import { useAuthStore } from "../../store/useAuthStore";
+  import { UseSweetAlert } from "../../composables/UseSweetAlert";
+  import BtnSubmit from "@components/buttons/BtnSubmit.vue";
+  import FormInputPassword from "./inputs/FormInputPassword.vue";
+  import FormInputText from "./inputs/FormInputText.vue";
 
   const form = reactive({
     user: "",
     password: ""
   });
   const router = useRouter();
+  const authStore = useAuthStore();
   const handleSubmit = async (values: any) => {
     try {
       if (values) {
-        await loginService(values);
+        await authStore.login(values);
+        UseSweetAlert.fire({
+          icon: "success",
+          title: "Bienvenido",
+          text: "Logueado correctamente"
+        });
         router.push({ name: "Home" });
       }
-    } catch (error) {
+    } catch (error: any) {
+      UseSweetAlert.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${error.response.data.msg}`
+      });
       console.error(error);
     }
   };
@@ -34,19 +44,21 @@
     />
     <FormInputPassword v-model="form.password" />
     <div class="row pt-3 text-center">
-      <div class="col-12 mb-3">
+      <div class="col-12">
         <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
           Olvide mi contraseña
         </router-link>
       </div>
-      <div class="col-12">
+      <div class="col-12 my-2">
         Todavia no tenes una cuenta?
+      </div>
+      <div class="col-12">
         <router-link :to="{ name: 'Register' }" class="text-decoration-none">
           Registrate
         </router-link>
       </div>
       <div class="col-12 pt-4 pb-5">
-        <BtnSubmit />
+        <BtnSubmit text="Enviar" />
       </div>
     </div>
   </Form>
