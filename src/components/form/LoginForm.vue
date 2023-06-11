@@ -7,9 +7,10 @@
   import BtnSubmit from "@components/buttons/BtnSubmit.vue";
   import FormInputPassword from "./inputs/FormInputPassword.vue";
   import FormInputText from "./inputs/FormInputText.vue";
+import { log } from "console";
 
   const form = reactive({
-    user: "",
+    email: "",
     password: ""
   });
   const router = useRouter();
@@ -18,12 +19,24 @@
     try {
       if (values) {
         await authStore.login(values);
-        UseSweetAlert.fire({
-          icon: "success",
-          title: "Bienvenido",
-          text: "Logueado correctamente"
-        });
-        router.push({ name: "Home" });
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        console.log('user',user);
+        
+        // if(user){
+        if (user && Object.keys(user).length > 0) {
+          UseSweetAlert.fire({
+            icon: "success",
+            title: "Bienvenido",
+            text: "Logueado correctamente"
+          });
+          router.push({ name: "Home" });
+        }else{
+          UseSweetAlert.fire({
+            icon: "error",
+            title: "Error",
+            text: "Email o Password Incorrecta"
+          });
+        }
       }
     } catch (error: any) {
       UseSweetAlert.fire({
@@ -40,7 +53,7 @@
     <FormInputText
       label="Username"
       placeholder="Username"
-      v-model="form.user"
+      v-model="form.email"
     />
     <FormInputPassword v-model="form.password" />
     <div class="row pt-3 text-center">

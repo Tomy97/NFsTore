@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import BtnDinamic from '../../../components/buttons/BtnDinamic.vue'
 import { useAuthStore } from '../../../store/useAuthStore'
 import { storeToRefs } from 'pinia'
@@ -23,6 +24,12 @@ const menuLinks = [
 ]
 
 const authStore = useAuthStore()
+const router = useRouter();
+
+const logOut = () => {
+  authStore.logOut();
+  router.push({ name: "Login" });
+};
 </script>
 <template>
   <nav
@@ -46,7 +53,7 @@ const authStore = useAuthStore()
           v-for="(item, index) of menuLinks"
           :key="index"
         >
-          <router-link :to="{ name: item.name }" class="nav-link text-capitalize">
+          <router-link :to="item.name" class="nav-link text-capitalize">
             {{ item.text }}
           </router-link>
         </div>
@@ -66,7 +73,7 @@ const authStore = useAuthStore()
 
             <button
               class="btn btn-lg text-danger fw-bold"
-              @click="authStore.logOut"
+              @click="logOut"
             >
               <i class="bi bi-box-arrow-in-right"></i>
             </button>
