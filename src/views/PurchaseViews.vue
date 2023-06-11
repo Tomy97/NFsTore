@@ -1,18 +1,22 @@
 <script setup lang="ts">
   import AppCard from "@components/card/AppCard.vue";
   import BtnSubmit from "@components/buttons/BtnSubmit.vue";
-  import { ref } from "vue";
-  import { useRouter } from "vue-router";
+  import { ref, onMounted } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  import { useNFTStore } from '../store/useNFTStore'
+  import { storeToRefs } from 'pinia'
 
-  const compra = ref({
-    id: 1,
-    price: "312",
-    name: "PROOF Collective",
-    user: "Mark",
-    src: "https://i.seadn.io/gae/uKX9nuMgFMvSXVH-m11abul1YKW1GxiDcKQ2gRlCDJAhZ61i20lJlwi0aGLaRTNk-r9vveXjOvMYDTvODz236PtcYGoyyLHLJ5hLd_8"
+  const nftStore = useNFTStore()
+  const route = useRoute();
+  const { selectedNFT } = storeToRefs(nftStore);
+
+  onMounted(async () => {
+
+    const nftId = Number(route.params.id);
+    await nftStore.fetchNFTDetails(nftId);
   });
+
   const ownerPercentage = ref<number>(10);
-  const precioTotal = ref<number>(28287262);
   const router = useRouter();
 
   const handleBuying = async () => {
@@ -24,20 +28,21 @@
     <div class="row">
       <AppCard #body>
         <div class="row px-3 px-lg-5">
-          <div class="col-12 text-center">
+          <!-- <div class="col-12 text-center">
             <h5>Comprar Nft</h5>
-          </div>
-          <div class="col-12 col-lg-3 text-center">
+          </div> -->
+          <div class="col-12 col-lg-5 text-center">
             <img
-              :src="compra.src"
-              :alt="compra.name"
+              :src="selectedNFT.imageUrl"
+              :alt="selectedNFT.name"
               class="img-width rounded img-fluid"
             />
           </div>
-          <div class="col-12 col-lg-9 py-4">
+          <div class="col-12 col-lg-7 py-4">
             <div class="row">
               <div class="col-12">
-                <h5>{{ compra.name }}</h5>
+                <h1>{{ selectedNFT.name }}</h1>
+                <div>Owned by <a><span>{{ selectedNFT.owner.userName }}</span></a></div>
               </div>
               <div class="col-12 mt-3">
                 <div class="row">
@@ -45,7 +50,7 @@
                     <h5>Precio en cripto</h5>
                   </div>
                   <div class="col-12 col-lg-3 text-end">
-                    <h6>$ {{ compra.price }}</h6>
+                    <h6>$ {{ selectedNFT.price }}</h6>
                   </div>
                 </div>
               </div>
@@ -57,23 +62,26 @@
                   <div class="col-6 col-md-3 col-lg-1 text-end">
                     <h6>{{ ownerPercentage }}%</h6>
                   </div>
+                  <div class="col-12 px-0">
+                    <BtnSubmit text="Comprar" class="w-100" @click="handleBuying()" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 pt-5 pb-3">
+          <!-- <div class="col-12 pt-5 pb-3">
             <div class="row">
               <div class="col-6 col-lg-8">
                 <h5>Total</h5>
               </div>
               <div class="col-6 col-lg-4 text-end">
-                <h6>$ {{ precioTotal }}</h6>
+                <h6>$ {{ selectedNFT.price }}</h6>
               </div>
             </div>
-          </div>
-          <div class="col-12 px-0">
+          </div> -->
+          <!-- <div class="col-12 px-0">
             <BtnSubmit text="Comprar" class="w-100" @click="handleBuying()" />
-          </div>
+          </div> -->
         </div>
       </AppCard>
     </div>

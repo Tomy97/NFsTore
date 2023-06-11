@@ -30,6 +30,10 @@ export const useNFTStore = defineStore("nft", () => {
     selectedNFT.value = nft;
   };
 
+  const fetchNFTDetails = async (nftId: number) => {
+    selectedNFT.value = await nftService.getById(nftId);
+  };
+
   onMounted(async () => {
     await fetchAllNFTs();
   });
@@ -37,6 +41,7 @@ export const useNFTStore = defineStore("nft", () => {
   return {
     nfts,
     selectedNFT,
+    fetchNFTDetails,
     fetchAllNFTs,
     createNFT,
     updateNFT,

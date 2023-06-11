@@ -1,9 +1,9 @@
 export interface INft {
   id: string | number;
   name: string;
-  image_url: string;
+  imageUrl: string;
   price: number;
-  create_id: number;
-  owner_id: number;
+  create: Object;
+  owner: Object;
   user: string;
 }

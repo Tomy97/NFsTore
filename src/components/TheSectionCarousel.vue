@@ -19,9 +19,9 @@ const handleReceiveData = (item: any) => {
     <template #slide-component>
       <swiper-slide v-for="item of nfts" :key="item.id">
         <AppCardNft
-          :src="item.image_url"
+          :src="item.imageUrl"
           :title="item.name"
-          :user="item.user"
+          :user="item.owner.userName"
           :price="item.price"
         >
           <template #button-components>
