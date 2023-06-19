@@ -66,7 +66,7 @@ const logOut = () => {
               class="text-decoration-none text-black"
             >
               <span class="fw-bold">
-                {{ authStore.user?.user }}
+                {{ authStore }}
               </span>
             </router-link>
             <button class="btn btn-lg fw-bold">

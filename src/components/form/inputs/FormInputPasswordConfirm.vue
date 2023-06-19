@@ -1,33 +1,32 @@
 <script setup lang="ts">
-import { defineRule, useField } from 'vee-validate'
-import { required, min, confirmed } from '@vee-validate/rules'
-import useInputField from '../../../composables/UseInputField'
+import { defineRule, useField } from "vee-validate";
+import { required, min, confirmed } from "@vee-validate/rules";
+import useInputField from "../../../composables/UseInputField";
 
-defineRule('required', required)
-defineRule('min', min)
-defineRule('confirmed', confirmed)
-
-defineEmits(['update:modelValue'])
+defineRule("required", required);
+defineRule("min", min);
+defineRule("confirmed", confirmed);
 
 const props = defineProps({
   label: {
     type: String,
-    default: 'Password Confirm',
+    default: "Password Confirm",
   },
-  modelValue: {
+  name: {
     type: String,
+    required: true,
   },
-})
+});
 
-const { input, errorMessage, meta } = useInputField(
-  props.label,
-  'confirmar contraseña',
+const { input, errorMessage } = useInputField(
+  props.name,
+  "confirmar contraseña",
   {
-    confirmed: '@Password',
+    confirmed: "@password",
     required: required,
     min: 6,
-  },
-)
+  }
+);
 </script>
 <template>
   <div class="login__field">
@@ -35,9 +34,8 @@ const { input, errorMessage, meta } = useInputField(
       type="password"
       class="login__input"
       :class="errorMessage ? 'space-bottom-style' : ''"
-      :error="!meta.valid && meta.validated"
-      v-model="input"
       placeholder="Confirm Password"
+      v-model="input"
       :required="required"
       autocomplete="off"
     />

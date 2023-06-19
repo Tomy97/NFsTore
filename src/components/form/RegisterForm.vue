@@ -1,55 +1,44 @@
 <script setup lang="ts">
-import { Form } from 'vee-validate'
-import { reactive } from 'vue'
-import BtnSubmit from '../buttons/BtnSubmit.vue'
-import FormInputEmail from './inputs/FormInputEmail.vue'
-import FormInputPassword from './inputs/FormInputPassword.vue'
-import FormInputPasswordConfirm from './inputs/FormInputPasswordConfirm.vue'
-import FormInputText from './inputs/FormInputText.vue'
-import { registerService } from '../../services/auth.service'
-import { useRouter } from 'vue-router'
-import { UseSweetAlert } from '../../composables/UseSweetAlert'
+import { Form } from "vee-validate";
+import { reactive } from "vue";
+import BtnSubmit from "../buttons/BtnSubmit.vue";
+import FormInputEmail from "./inputs/FormInputEmail.vue";
+import FormInputPassword from "./inputs/FormInputPassword.vue";
+import FormInputPasswordConfirm from "./inputs/FormInputPasswordConfirm.vue";
+import FormInputText from "./inputs/FormInputText.vue";
+import { registerService } from "../../services/auth.service";
+import { useRouter } from "vue-router";
+import { UseSweetAlert } from "../../composables/UseSweetAlert";
 
-const form = reactive({
-  name: '',
-  user: '',
-  email: '',
-  password: '',
-  passwordConfirm: '',
-})
-
-const router = useRouter()
+const router = useRouter();
 const handleSubmit = async (values: any) => {
   try {
     if (values) {
       UseSweetAlert.fire({
-        title: 'Registro exitoso',
-        icon: 'success',
-      })
-      await registerService(values)
-      router.push({ name: 'Login' })
+        title: "Registro exitoso",
+        icon: "success",
+      });
+
+      await registerService(values);
+      router.push({ name: "Login" });
     }
   } catch (error: any) {
     UseSweetAlert.fire({
-      icon: 'error',
+      icon: "error",
       title: `${error.response.data.msg}`,
-    })
-    console.error(error)
+    });
+    console.error(error);
   }
-}
+};
 </script>
 
 <template>
   <Form class="px-3" @submit="handleSubmit">
-    <FormInputText label="Name" placeholder="Name" v-model="form.name" />
-    <FormInputText
-      label="Username"
-      placeholder="Username"
-      v-model="form.user"
-    />
-    <FormInputEmail v-model="form.email" />
-    <FormInputPassword v-model="form.password" />
-    <FormInputPasswordConfirm v-model="form.passwordConfirm" />
+    <FormInputText label="Name" placeholder="Name" name="name" />
+    <FormInputText label="Username" placeholder="Username" name="userName" />
+    <FormInputEmail name="email" />
+    <FormInputPassword name="password" />
+    <FormInputPasswordConfirm name="passwordConfirm" />
     <div class="row justify-content-center">
       <div class="col-12 text-center py-2">
         <span>Ya tenes una cuenta?</span>

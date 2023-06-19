@@ -1,24 +1,26 @@
 import axios from "axios";
+import { IUser } from "interfaces/IUser";
 
 const API_URL = import.meta.env.VITE_API_URL;
-export const loginService = async (userData: any) => {
+
+export const loginService = async (userData: IUser) => {
   const login = {
-    // user: userData.Username,
-    email: userData.Username,
-    password: userData.Password,
-  };;
-  
+    email: userData.email,
+    password: userData.password,
+  };
+
   const { data } = await axios.post(`${API_URL}/auth/login`, login);
   return data;
 };
 
-export const registerService = async (userData: any) => {
+export const registerService = async (userData: IUser) => {
   const register = {
-    name: userData.Name,
-    user: userData.Username,
-    email: userData.Email,
-    password: userData.Password,
+    name: userData.name,
+    user: userData.userName,
+    email: userData.email,
+    password: userData.password,
   };
+
   const { data } = await axios.post(`${API_URL}/auth/register`, register);
   return data;
 };

@@ -1,70 +1,58 @@
 <script setup lang="ts">
-  import { reactive } from "vue";
-  import { Form } from "vee-validate";
-  import { useRouter } from "vue-router";
-  import { useAuthStore } from "../../store/useAuthStore";
-  import { UseSweetAlert } from "../../composables/UseSweetAlert";
-  import BtnSubmit from "@components/buttons/BtnSubmit.vue";
-  import FormInputPassword from "./inputs/FormInputPassword.vue";
-  import FormInputText from "./inputs/FormInputText.vue";
+import { reactive } from "vue";
+import { Form } from "vee-validate";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../../store/useAuthStore";
+import { UseSweetAlert } from "../../composables/UseSweetAlert";
+import BtnSubmit from "@components/buttons/BtnSubmit.vue";
+import FormInputPassword from "./inputs/FormInputPassword.vue";
+import FormInputText from "./inputs/FormInputText.vue";
 import { log } from "console";
 
-  const form = reactive({
-    email: "",
-    password: ""
-  });
-  const router = useRouter();
-  const authStore = useAuthStore();
-  const handleSubmit = async (values: any) => {
-    try {
-      if (values) {
-        await authStore.login(values);
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        console.log('user',user);
-        
-        // if(user){
-        if (user && Object.keys(user).length > 0) {
-          UseSweetAlert.fire({
-            icon: "success",
-            title: "Bienvenido",
-            text: "Logueado correctamente"
-          });
-          router.push({ name: "Home" });
-        }else{
-          UseSweetAlert.fire({
-            icon: "error",
-            title: "Error",
-            text: "Email o Password Incorrecta"
-          });
-        }
+const router = useRouter();
+const authStore = useAuthStore();
+const handleSubmit = async (values: any) => {
+  try {
+    if (values) {
+      await authStore.login(values);
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+      if (user && Object.keys(user).length > 0) {
+        UseSweetAlert.fire({
+          icon: "success",
+          title: "Bienvenido",
+          text: "Logueado correctamente",
+        });
+        router.push({ name: "Home" });
+      } else {
+        UseSweetAlert.fire({
+          icon: "error",
+          title: "Error",
+          text: "Email o Password Incorrecta",
+        });
       }
-    } catch (error: any) {
-      UseSweetAlert.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `${error.response.data.msg}`
-      });
-      console.error(error);
     }
-  };
+  } catch (error: any) {
+    UseSweetAlert.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error.response.data.msg}`,
+    });
+    console.error(error);
+  }
+};
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
-    <FormInputText
-      label="Username"
-      placeholder="Username"
-      v-model="form.email"
-    />
-    <FormInputPassword v-model="form.password" />
+    <FormInputText label="Username" placeholder="Username" name="userName" />
+    <FormInputPassword name="password" />
     <div class="row pt-3 text-center">
       <div class="col-12">
         <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
           Olvide mi contraseña
         </router-link>
       </div>
-      <div class="col-12 my-2">
-        Todavia no tenes una cuenta?
-      </div>
+      <div class="col-12 my-2">Todavia no tenes una cuenta?</div>
       <div class="col-12">
         <router-link :to="{ name: 'Register' }" class="text-decoration-none">
           Registrate

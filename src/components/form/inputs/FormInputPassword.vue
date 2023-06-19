@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import { defineRule, useField } from 'vee-validate'
-import { required, min } from '@vee-validate/rules'
+import { defineRule } from "vee-validate";
+import { required, min } from "@vee-validate/rules";
+import useInputField from "../../../composables/UseInputField";
 
-defineRule('required', required)
-defineRule('min', min)
+defineRule("required", required);
+defineRule("min", min);
 
-defineEmits(['update:modelValue'])
+defineEmits(["update:modelValue"]);
 
 const props = defineProps({
   label: {
     type: String,
-    default: 'Password',
+    default: "Password",
   },
-  modelValue: {
+  name: {
     type: String,
+    required: true,
   },
   isRequired: {
     type: Boolean,
     default: true,
   },
-})
+});
 
-const { value, errorMessage } = useField(props.label, {
+const { input, errorMessage } = useInputField(props.name, "contraseña", {
   required: required,
   min: 6,
-})
+});
 </script>
 <template>
   <div class="login__field">
@@ -32,8 +34,8 @@ const { value, errorMessage } = useField(props.label, {
       type="password"
       class="login__input"
       :class="errorMessage ? 'space-bottom-style' : ''"
-      v-model="value"
-      @input="$emit('update:modelValue', value)"
+      :name="props.name"
+      v-model="input"
       placeholder="Password"
       :required="required"
       autocomplete="off"

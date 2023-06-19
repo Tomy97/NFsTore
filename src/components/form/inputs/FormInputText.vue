@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { defineRule, useField } from "vee-validate";
+import { defineRule } from "vee-validate";
 import { required } from "@vee-validate/rules";
+import useInputField from "../../../composables/UseInputField";
 
 defineRule("required", required);
 
@@ -9,10 +10,10 @@ defineEmits(["update:modelValue"]);
 const props = defineProps<{
   label: string;
   placeholder: string;
-  modelValue: string;
+  name: string;
 }>();
 
-const { value, errorMessage } = useField(props.label, {
+const { input, errorMessage } = useInputField(props.name, props.label, {
   required: required,
 });
 </script>
@@ -22,9 +23,8 @@ const { value, errorMessage } = useField(props.label, {
       type="text"
       class="login__input"
       :class="errorMessage ? 'space-bottom-style' : ''"
-      v-model="value"
-      @input="$emit('update:modelValue', value)"
       :placeholder="placeholder"
+      v-model="input"
       :required="required"
       autocomplete="off"
     />
