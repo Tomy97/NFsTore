@@ -45,7 +45,12 @@ const routes = createRouter({
           path: "/crear",
           name: "Crear",
           component: () => import("../views/CreateViews.vue")
-        }
+        },
+        {
+          path: "login",
+          name: "Login",
+          component: () => import("../views/LoginViews.vue")
+        },
       ]
     },
     {

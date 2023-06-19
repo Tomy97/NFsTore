@@ -14,8 +14,9 @@ export const nftService = {
     return data;  
   },
 
-  async create(nft: INft): Promise<INft> {
-    const { data } = await axios.post(`${API_URL}/nfts`, nft);
+  async create(nft: INft, headers: any): Promise<INft> {
+    console.log('creando nft',headers);
+    const { data } = await axios.post(`${API_URL}/nfts`, nft, {headers});
     return data;
   },
 

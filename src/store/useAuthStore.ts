@@ -12,17 +12,21 @@ export const useAuthStore = defineStore(
     const isAuth = computed(() => !!user.value);
     const login = async (userData: IUser) => {
       try {
-        const {token,userName,avatar, email,statusCode, message} = await loginService(userData);
-        console.log(userName,avatar, email);
-        
+        let { token, userName, avatar, email, statusCode, message } = await loginService(userData);
+        console.log(userName, avatar, email);
         if (token) {
           // Guardar en el localStorage y que user contenga los datos guardados en el localStorage
-          localStorage.setItem("user", JSON.stringify(userName,avatar, email));
+          console.log('mi token',token);
+          const formattedToken = token.replace(/"/g, '');
+          console.log('mi fffffff',formattedToken);
+
+          
+          localStorage.setItem("user", JSON.stringify(userName, avatar, email));
+          localStorage.setItem("token", JSON.stringify(token));
           user.value = JSON.parse(localStorage.getItem("user") || "{}");
         } else {
           // Manejar el caso de error en el login
           throw new Error(`Error en el login: ${statusCode} - ${message}`);
-          // console.error(`Error en el login: ${statusCode} - ${message}`);
         }
       } catch (error) {
         console.error("Error en el login:", error);
@@ -31,7 +35,10 @@ export const useAuthStore = defineStore(
 
     const logOut = async () => {
       localStorage.clear();
-      location.reload();
+      // location.reload();
+    };
+    const getToken = () => {
+      return localStorage.getItem("token");
     };
 
     return {
@@ -39,6 +46,7 @@ export const useAuthStore = defineStore(
       isAuth,
       login,
       logOut,
+      getToken
     };
   },
   {

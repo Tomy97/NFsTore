@@ -27,6 +27,8 @@ const authStore = useAuthStore()
 const router = useRouter();
 
 const logOut = () => {
+  console.log('logut');
+  
   authStore.logOut();
   router.push({ name: "Login" });
 };
@@ -53,7 +55,7 @@ const logOut = () => {
           v-for="(item, index) of menuLinks"
           :key="index"
         >
-          <router-link :to="item.name" class="nav-link text-capitalize">
+          <router-link :to="{ name: item.name}" class="nav-link text-capitalize">
             {{ item.text }}
           </router-link>
         </div>
