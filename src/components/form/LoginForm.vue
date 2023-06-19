@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { reactive } from "vue";
 import { Form } from "vee-validate";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "../../store/useAuthStore";
 import { UseSweetAlert } from "../../composables/UseSweetAlert";
 import BtnSubmit from "@components/buttons/BtnSubmit.vue";
 import FormInputPassword from "./inputs/FormInputPassword.vue";
-import FormInputText from "./inputs/FormInputText.vue";
-import { log } from "console";
+import FormInputEmail from "./inputs/FormInputEmail.vue";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -44,7 +42,7 @@ const handleSubmit = async (values: any) => {
 </script>
 <template>
   <Form class="px-3" @submit="handleSubmit">
-    <FormInputText label="Username" placeholder="Username" name="userName" />
+    <FormInputEmail />
     <FormInputPassword name="password" />
     <div class="row pt-3 text-center">
       <div class="col-12">
