@@ -22,6 +22,11 @@ const routes = createRouter({
           component: () => import("../views/ProfileViews.vue")
         },
         {
+          path: "/wallet",
+          name: "Wallet",
+          component: () => import("../views/WalletViews.vue")
+        },
+        {
           path: "/productos",
           name: "Productos",
           component: () => import("../views/Products.vue")
@@ -66,6 +71,11 @@ const routes = createRouter({
           path: "register",
           name: "Register",
           component: () => import("../views/RegisterViews.vue")
+        },
+        {
+          path: "loginRequired",
+          name: "LoginRequired",
+          component: () => import("../views/LoginRequiredViews.vue")
         },
         {
           path: "send-email",

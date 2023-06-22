@@ -66,11 +66,16 @@ const logOut = () => {
               class="text-decoration-none text-black"
             >
               <span class="fw-bold">
-                {{ authStore }}
+                profile
               </span>
             </router-link>
             <button class="btn btn-lg fw-bold">
-              <i class="bi bi-wallet"></i>
+              <router-link
+                :to="{ name: 'Wallet' }"
+                class="text-decoration-none text-black"
+              >
+                <i class="bi bi-wallet"></i>
+              </router-link>
             </button>
 
             <button

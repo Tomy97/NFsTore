@@ -14,7 +14,8 @@ const handleSubmit = async (values: any) => {
     if (values) {
       await authStore.login(values);
       const user = JSON.parse(localStorage.getItem("user") || "{}");
-
+      console.log('user',user);
+      
       if (user && Object.keys(user).length > 0) {
         UseSweetAlert.fire({
           icon: "success",

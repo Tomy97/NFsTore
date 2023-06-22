@@ -19,6 +19,10 @@
             <label for="porcentaje" class="form-label">Porcentaje</label>
             <input v-model="porcentaje" type="number" id="porcentaje" class="form-control" required>
           </div>
+          <div class="mb-3">
+            <label for="collection" class="form-label">Coleccion</label>
+            <input v-model="collection" type="number" id="collection" class="form-control" required>
+          </div>
           <div class="mb-3 text-center">
             <button type="submit" class="btn btn-primary text-white w-25">Crear NFT</button>
           </div>
@@ -83,9 +87,11 @@
 import { ref, defineComponent } from "vue";
 import { useNFTStore } from "../store/useNFTStore";
 import { useRouter } from "vue-router";
+import { useAuth } from '../composables/UseAuth.ts';
 
 export default defineComponent({
   setup() {
+    useAuth()
     const nftStore = useNFTStore();
     const imageUrl = ref("");
     const name = ref("");
