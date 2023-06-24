@@ -37,9 +37,9 @@ const routes = createRouter({
           component: () => import("../views/BuyViews.vue")
         },
         {
-          path: "/comprar/:id",
-          name: "Comprar",
-          component: () => import("../views/PurchaseViews.vue")
+          path: "/nft/:id",
+          name: "Nft",
+          component: () => import("../views/NftViews.vue")
         },
         {
           path: "/comprar/:id/compra-exitosa",

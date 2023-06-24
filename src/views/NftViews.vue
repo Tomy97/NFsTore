@@ -41,9 +41,6 @@ export default defineComponent({
     <div class="row">
       <AppCard else #body>
         <div class="row px-3 px-lg-5">
-          <!-- <div class="col-12 text-center">
-            <h5>Comprar Nft</h5>
-          </div> -->
           <div class="col-12 col-lg-5 text-center">
             <img
               :src="selectedNFT.imageUrl"
@@ -82,19 +79,6 @@ export default defineComponent({
               <BtnSubmit text="Comprar" class="w-100" @click="handleBuying()" />
             </div>
           </div>
-          <!-- <div class="col-12 pt-5 pb-3">
-            <div class="row">
-              <div class="col-6 col-lg-8">
-                <h5>Total</h5>
-              </div>
-              <div class="col-6 col-lg-4 text-end">
-                <h6>$ {{ selectedNFT.price }}</h6>
-              </div>
-            </div>
-          </div> -->
-          <!-- <div class="col-12 px-0">
-            <BtnSubmit text="Comprar" class="w-100" @click="handleBuying()" />
-          </div> -->
         </div>
       </AppCard>
     </div>

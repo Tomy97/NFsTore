@@ -26,7 +26,7 @@ const handleReceiveData = (item: any) => {
         >
           <template #button-components>
             <BtnDinamic
-              :path="`comprar/${item.id}`"
+              :path="`nft/${item.id}`"
               text="Comprar"
               @click="handleReceiveData(item)"
             />

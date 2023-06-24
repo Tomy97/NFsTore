@@ -3,13 +3,16 @@ import { nftService } from "../services/nft.service";
 import { INft } from "interfaces/INft";
 import { onMounted, ref } from "vue";
 import { useAuthStore} from './useAuthStore'
+import { useRouter } from "vue-router";
+import { UseSweetAlert } from "../composables/UseSweetAlert";
 
 export const useNFTStore = defineStore("nft", () => {
   const nfts = ref<INft[]>([]);
   const selectedNFT = ref<INft>({} as INft);
   const authStore = useAuthStore()
   const token = authStore.getToken();
-  
+  const router = useRouter();
+
   const formattedToken = token ? token.replace(/"/g, '') : '';
 
   const headers = {
@@ -22,10 +25,14 @@ export const useNFTStore = defineStore("nft", () => {
   };
 
   const createNFT = async (nft: INft) => {
-    console.log('token',token);
-    
-    await nftService.create(nft, headers);
-    // await fetchAllNFTs();
+    const createdNFT = await nftService.create(nft, headers);
+    if (createdNFT) {
+      UseSweetAlert.fire({
+        title: "El Nft ah sido creado exitosamente",
+        icon: "success",
+      });
+      router.push(`/nft/${createdNFT.id}`);
+    }
   };
 
   const updateNFT = async (nft: INft) => {

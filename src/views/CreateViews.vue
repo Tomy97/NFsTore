@@ -4,24 +4,26 @@
       <div class="col-12 col-lg-7 card-style">
         <form @submit.prevent="createNFT">
           <div class="pt-4 mb-3">
+            <ImageUpload v-model="nft.imageUrl" />
+          </div>
+          <!-- <div class="pt-4 mb-3">
             <label for="imageUrl" class="form-label">URL de la imagen</label>
             <input v-model="imageUrl" type="text" id="imageUrl" class="form-control" required>
-          </div>
+          </div> -->
           <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input v-model="name" type="text" id="name" class="form-control" required>
+            <input v-model="nft.name" type="text" id="name" class="form-control" required>
           </div>
           <div class="mb-3">
             <label for="price" class="form-label">Precio</label>
-            <input v-model="price" type="number" id="price" class="form-control" required>
+            <input v-model="nft.price" type="number" id="price" class="form-control" required>
           </div>
           <div class="mb-3">
             <label for="porcentaje" class="form-label">Porcentaje</label>
-            <input v-model="porcentaje" type="number" id="porcentaje" class="form-control" required>
+            <input v-model="nft.porcentaje" type="number" id="porcentaje" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="collection" class="form-label">Coleccion</label>
-            <input v-model="collection" type="number" id="collection" class="form-control" required>
+            <SelectCollections v-model="nft.selectedCollection" :filter="filter" id="collection" class="form-control" required/>
           </div>
           <div class="mb-3 text-center">
             <button type="submit" class="btn btn-primary text-white w-25">Crear NFT</button>
@@ -88,36 +90,42 @@ import { ref, defineComponent } from "vue";
 import { useNFTStore } from "../store/useNFTStore";
 import { useRouter } from "vue-router";
 import { useAuth } from '../composables/UseAuth.ts';
+import SelectCollections from '../components/form/inputs/SelectCollections.vue'
+import ImageUpload from '../components/form/inputs/ImageUpload.vue'
 
 export default defineComponent({
+  components: {
+    SelectCollections,
+    ImageUpload
+  },
   setup() {
     useAuth()
     const nftStore = useNFTStore();
-    const imageUrl = ref("");
-    const name = ref("");
-    const price = ref("");
-    const porcentaje = ref("");
-
+    const nft = ref({
+      imageUrl: "",
+      name: "",
+      price: "",
+      porcentaje: "",
+      selectedCollection: "",
+    });
     const router = useRouter();
 
     const createNFT = async () => {
       const nftData = {
-        imageUrl: imageUrl.value,
-        name: name.value,
-        price: price.value,
-        porcentaje: porcentaje.value,
+        imageUrl: nft.value.imageUrl,
+        name: nft.value.name,
+        price: nft.value.price,
+        porcentaje: nft.value.porcentaje,
+        collection: nft.value.selectedCollection,
       };
       const data = await nftStore.createNFT(nftData);
-      console.log('datata',data);
       // router.push({ name: "Login" });
     };
 
     return {
-      imageUrl,
-      name,
-      price,
-      porcentaje,
+      nft,
       createNFT,
+      filter: { myCollections: true}
     };
   },
 });
