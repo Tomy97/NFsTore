@@ -20,6 +20,11 @@ export const nftService = {
     return data;
   },
 
+  async buy(nft: any, headers: any){
+    const { data } = await axios.post(`${API_URL}/nfts/buy`,nft.value, {headers});
+    return data;
+  },
+
   async update(id: number | string, nft: INft): Promise<INft> {
     const { data } = await axios.put(`${API_URL}/nfts/${id}`, nft);
     return data;

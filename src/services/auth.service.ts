@@ -11,19 +11,18 @@ export const loginService = async (userData: IUser) => {
     password: userData.password,
   };
   const { data } = await axios.post(`${API_URL}/auth/login`, login);
-  console.log('data',data.authToken);
   
   return data.authToken;
 };
 
 export const registerService = async (userData: IUser) => {
   const register = {
-    name: userData.name,
-    user: userData.userName,
+    userName: userData.userName,
     email: userData.email,
     password: userData.password,
+    passwordConfirmation: userData.passwordConfirmation,
   };
-
+  
   const { data } = await axios.post(`${API_URL}/auth/register`, register);
   return data;
 };

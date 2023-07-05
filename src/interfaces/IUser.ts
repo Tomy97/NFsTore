@@ -4,5 +4,6 @@ export interface IUser {
   user: string;
   email?: string;
   password?: string;
+  passwordConfirmation?: string;
   loggedIn?: boolean;
 }

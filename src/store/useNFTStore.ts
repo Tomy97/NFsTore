@@ -1,15 +1,15 @@
-import { defineStore } from "pinia";
-import { nftService } from "../services/nft.service";
-import { INft } from "interfaces/INft";
-import { onMounted, ref } from "vue";
-import { useAuthStore} from './useAuthStore'
-import { useRouter } from "vue-router";
-import { UseSweetAlert } from "../composables/UseSweetAlert";
+import { defineStore } from 'pinia';
+import { nftService } from '../services/nft.service';
+import { INft } from 'interfaces/INft';
+import { onMounted, ref } from 'vue';
+import { useAuthStore } from './useAuthStore';
+import { useRouter } from 'vue-router';
+import { UseSweetAlert } from '../composables/UseSweetAlert';
 
-export const useNFTStore = defineStore("nft", () => {
+export const useNFTStore = defineStore('nft', () => {
   const nfts = ref<INft[]>([]);
   const selectedNFT = ref<INft>({} as INft);
-  const authStore = useAuthStore()
+  const authStore = useAuthStore();
   const token = authStore.getToken();
   const router = useRouter();
 
@@ -17,7 +17,7 @@ export const useNFTStore = defineStore("nft", () => {
 
   const headers = {
     Authorization: `Bearer ${formattedToken}`,
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   };
 
   const fetchAllNFTs = async () => {
@@ -28,13 +28,41 @@ export const useNFTStore = defineStore("nft", () => {
     const createdNFT = await nftService.create(nft, headers);
     if (createdNFT) {
       UseSweetAlert.fire({
-        title: "El Nft ah sido creado exitosamente",
-        icon: "success",
+        title: 'El Nft ah sido creado exitosamente',
+        icon: 'success',
       });
       router.push(`/nft/${createdNFT.id}`);
     }
   };
 
+  const buyNFT = async (nft: INft) => {
+    try {
+      const buyNFT  = await nftService.buy(nft, headers);
+      console.log('aaaaaaaca',buyNFT);
+      
+      if (buyNFT) {
+        UseSweetAlert.fire({
+          icon: 'success',
+          title: 'Compra Exitosa',
+          text: `El Nft ${buyNFT.name} ahora es tuyo`,
+        });
+        router.push({ name: 'Home' });
+      } else {
+        UseSweetAlert.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se Pudo realizar la compra',
+        });
+      }
+    } catch (error) {
+      UseSweetAlert.fire({
+        icon: 'error',
+        title: 'Error',
+        text: `${error.response.data.message}`,
+      });
+      console.error('Error al comprar el NFT:', error);
+    }
+  };
   const updateNFT = async (nft: INft) => {
     await nftService.update(nft.id, nft);
     await fetchAllNFTs();
@@ -66,5 +94,6 @@ export const useNFTStore = defineStore("nft", () => {
     updateNFT,
     deleteNFT,
     selectNFT,
+    buyNFT,
   };
 });

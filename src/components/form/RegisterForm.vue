@@ -34,11 +34,10 @@ const handleSubmit = async (values: any) => {
 
 <template>
   <Form class="px-3" @submit="handleSubmit">
-    <FormInputText label="Name" placeholder="Name" name="name" />
-    <FormInputText label="Username" placeholder="Username" name="userName" />
+    <FormInputText label="Username" placeholder="UserName" name="userName" />
     <FormInputEmail name="email" />
     <FormInputPassword name="password" />
-    <FormInputPasswordConfirm name="passwordConfirm" />
+    <FormInputPasswordConfirm name="passwordConfirmation" />
     <div class="row justify-content-center">
       <div class="col-12 text-center py-2">
         <span>Ya tenes una cuenta?</span>

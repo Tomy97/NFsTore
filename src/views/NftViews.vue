@@ -25,7 +25,7 @@ export default defineComponent({
     const router = useRouter();
 
     const handleBuying = async () => {
-      await router.push({ name: "CompraExitosa" });
+      await nftStore.buyNFT(selectedNFT);
     };
 
     return {

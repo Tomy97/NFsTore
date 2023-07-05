@@ -1,7 +1,7 @@
 import { IUser } from "./IUser";
 
 export interface INft {
-  id?: string | number;
+  id: string | number;
   name: string;
   imageUrl: string;
   price: number;

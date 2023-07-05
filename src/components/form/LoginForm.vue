@@ -58,7 +58,7 @@ const handleSubmit = async (values: any) => {
         </router-link>
       </div>
       <div class="col-12 pt-4 pb-5">
-        <BtnSubmit text="Enviar" />
+        <BtnSubmit class="btn" text="Enviar" />
       </div>
     </div>
   </Form>

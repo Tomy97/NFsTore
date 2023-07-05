@@ -1,42 +1,57 @@
 <template>
   <div class="mt-2">
     <!-- Sección de balance -->
-    <div class="balance-section  d-flex justify-content-center">
+    <div class="balance-section d-flex justify-content-center">
       <div class="card w-75 rounded">
         <div class="card-body text-center">
           <h5 class="card-title">Balance</h5>
           <h3 class="card-text mb-4">{{ balance }}</h3>
           <div class="d-flex justify-content-center">
-            <button class="btn btn-primary me-2 btn-block" @click="deposit">Depositar</button>
-            <button class="btn btn-primary btn-block" @click="withdraw">Retirar</button>
+            <button class="btn btn-primary me-2 btn-block" @click="deposit">
+              Depositar
+            </button>
+            <button class="btn btn-primary btn-block" @click="withdraw">
+              Retirar
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Sección de transacciones -->
-    <Transactions  :transactions="transactions" />
-
+    <Transactions :transactions="transactions" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import Transactions from '../components/Transactions.vue';
+import { INft } from 'interfaces/INft';
+import { IUser } from 'interfaces/IUser';
 
 interface Transaction {
   id: number;
-  description: string;
   amount: number;
-  image?: string;
+  nft: INft;
+  buyer: IUser;
+  seller: IUser;
 }
 
 const balance = ref(5000);
 
-const transactions = ref<Transaction[]>([
-  { id: 1, description: 'Compra de libros', amount: -200, image:'data:image/jpeg;base64,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' },
-  { id: 2, description: 'Depósito', amount: 1000 },
-  { id: 3, description: 'Pago de factura', amount: -500 },
+const transactions = ref<any[]>([
+  {
+    id: 1,
+    amount: 32,
+    nft: {
+      id: 1,
+      name: 'monito',
+      amount: 32,
+      imageUrl:
+        'https://ichef.bbci.co.uk/news/640/cpsprodpb/DBB7/production/_122074265_hi071843849.jpg',
+    },
+    buyer: { userName: 'dunick' },
+    seller: { userName: 'lunuel0' },
+  },
 ]);
-
 </script>
