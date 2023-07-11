@@ -4,7 +4,7 @@
       <div class="col-12 col-lg-7 card-style">
         <form @submit.prevent="createNFT">
           <div class="pt-4 mb-3">
-            <ImageUpload v-model="nft.imageUrl" />
+            <ImageUpload v-model="nft.image" />
           </div>
           <!-- <div class="pt-4 mb-3">
             <label for="imageUrl" class="form-label">URL de la imagen</label>
@@ -102,7 +102,7 @@ export default defineComponent({
     useAuth()
     const nftStore = useNFTStore();
     const nft = ref({
-      imageUrl: "",
+      image: File,
       name: "",
       price: "",
       porcentaje: "",
@@ -111,8 +111,9 @@ export default defineComponent({
     const router = useRouter();
 
     const createNFT = async () => {
+      console.log('asi mellego',nft.value.image);
       const nftData = {
-        imageUrl: nft.value.imageUrl,
+        file: nft.value.image,
         name: nft.value.name,
         price: nft.value.price,
         porcentaje: nft.value.porcentaje,

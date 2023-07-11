@@ -22,8 +22,9 @@
   </template>
   
   <script setup lang="ts">
-  import { INft } from 'interfaces/INft';
-import { IUser } from 'interfaces/IUser';
+  // import { INft } from 'interfaces/INft';
+  import { INft } from '../../interfaces/INft';
+import { IUser } from '../../interfaces/IUser';
 import { computed, defineProps } from 'vue';
   
   interface Transaction {

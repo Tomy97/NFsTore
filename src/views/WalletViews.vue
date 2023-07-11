@@ -26,8 +26,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Transactions from '../components/Transactions.vue';
-import { INft } from 'interfaces/INft';
-import { IUser } from 'interfaces/IUser';
+import { INft } from '../interfaces/INft';
+import { IUser } from '../interfaces/IUser';
 
 interface Transaction {
   id: number;

@@ -15,8 +15,8 @@
       @dragenter="handleDragEnter"
       @dragleave="handleDragLeave"
     >
-      <div class="preview-area" v-if="imageUrl">
-        <img :src="imageUrl" alt="Preview" class="img-thumbnail" />
+      <div class="preview-area" v-if="image">
+        <img :src="image" alt="Preview" class="img-thumbnail" />
       </div>
       <p v-else>
         {{
@@ -36,13 +36,13 @@ export default defineComponent({
   name: 'ImageUpload',
   props: {
     modelValue: {
-      type: String,
+      type: File,
       required: true,
     },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const imageUrl = ref('');
+    const image = ref('');
     const fileInputRef = ref<HTMLInputElement | null>(null);
     const selectedFile = ref<File | null>(null);
     const isDragging = ref(false);
@@ -84,15 +84,17 @@ export default defineComponent({
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target) {
-          imageUrl.value = event.target.result as string;
-          emit('update:modelValue', imageUrl.value); 
+          image.value = event.target.result as string;
+          console.log('este es mi file',file);
+          
+          emit('update:modelValue', file); 
         }
       };
       reader.readAsDataURL(file);
     };
 
     return {
-      imageUrl,
+      image,
       fileInputRef,
       selectedFile,
       isDragging,

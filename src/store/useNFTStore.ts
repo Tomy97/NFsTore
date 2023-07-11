@@ -17,7 +17,8 @@ export const useNFTStore = defineStore('nft', () => {
 
   const headers = {
     Authorization: `Bearer ${formattedToken}`,
-    'Content-Type': 'application/json',
+    'Content-Type': 'multipart/form-data',
+    // 'Content-Type': 'application/json',
   };
 
   const fetchAllNFTs = async () => {
@@ -25,6 +26,8 @@ export const useNFTStore = defineStore('nft', () => {
   };
 
   const createNFT = async (nft: INft) => {
+    console.log('esto me llego store',nft);
+    
     const createdNFT = await nftService.create(nft, headers);
     if (createdNFT) {
       UseSweetAlert.fire({

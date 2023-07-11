@@ -15,7 +15,8 @@ export default defineComponent({
     const nftStore = useNFTStore()
     const route = useRoute();
     const { selectedNFT } = storeToRefs(nftStore);
-  
+    console.log('selectedNFT',selectedNFT);
+    selectedNFT.imagePath = `http://localhost:4000/${selectedNFT.imagePath}`
     onMounted(async () => {
       const nftId = Number(route.params.id);
       await nftStore.fetchNFTDetails(nftId);
@@ -43,7 +44,7 @@ export default defineComponent({
         <div class="row px-3 px-lg-5">
           <div class="col-12 col-lg-5 text-center">
             <img
-              :src="selectedNFT.imageUrl"
+              :src="selectedNFT.imagePath"
               :alt="selectedNFT.name"
               class="img-width rounded img-fluid"
             />

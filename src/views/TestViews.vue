@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { nftService } from '../services/nft.service';
-import { INft } from 'interfaces/INft';
+import { INft } from '../interfaces/INft';
 const file = ref<File | null>(null);
 
 const data = ref<INft[]>([]);
