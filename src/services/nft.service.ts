@@ -21,15 +21,20 @@ export const nftService = {
 
   async create(nft: INft, headers: any): Promise<INft> {
     console.log('mandale perro', nft);
-    
+
     const { data } = await axios.post(`${API_URL}/nfts`, nft, { headers });
     return data;
   },
 
   async buy(nft: any, headers: any) {
-    const { data } = await axios.post(`${API_URL}/nfts/buy`, nft.value, {
-      headers,
-    });
+    
+    const { data } = await axios.post(
+      `${API_URL}/nfts/buy`,
+      nft,
+      {
+        headers,
+      },
+    );
     return data;
   },
 
@@ -49,7 +54,7 @@ export const nftService = {
     const { data } = await axios.post(`${API_URL}/nfts`, formData);
     return data;
   },
-  
+
   async getNft() {
     const { data } = await axios.get(`${API_URL}/nfts/files`);
     console.log('files service', data);

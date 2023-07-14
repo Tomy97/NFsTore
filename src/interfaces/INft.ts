@@ -5,7 +5,8 @@ export interface INft {
   name: string;
   file: File;
   price: number;
-  create?: Object;
-  owner?: IUser;
+  create: Object;
+  owner: IUser;
+  imageUrl: string;
   user?: string;
 }
