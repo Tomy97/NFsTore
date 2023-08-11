@@ -3,7 +3,7 @@
   import LoginForm from "../components/form/LoginForm.vue";
 </script>
 <template>
-  <AppCardForms title="Iniciar Sesión">
+  <AppCardForms>
     <template #form-components>
       <LoginForm />
     </template>

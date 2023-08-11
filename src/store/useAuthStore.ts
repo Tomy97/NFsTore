@@ -18,6 +18,8 @@ export const useAuthStore = defineStore(
     const login = async (userData: IUser) => {
       try {
         let { token, userName, avatar, email, statusCode, message } = await loginService(userData);
+        console.log(userName);
+        
         if (token) {
           localStorage.setItem("user", JSON.stringify({userName, avatar, email, loggedIn: true}));
           localStorage.setItem("token", JSON.stringify(token));

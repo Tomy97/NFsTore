@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { Form } from "vee-validate";
-import { useRouter } from "vue-router";
-import { useAuthStore } from "../../store/useAuthStore";
-import { UseSweetAlert } from "../../composables/UseSweetAlert";
-import BtnSubmit from "@components/buttons/BtnSubmit.vue";
-import FormInputPassword from "./inputs/FormInputPassword.vue";
-import FormInputEmail from "./inputs/FormInputEmail.vue";
+import { Form } from 'vee-validate';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '../../store/useAuthStore';
+import { UseSweetAlert } from '../../composables/UseSweetAlert';
+import BtnSubmit from '@components/buttons/BtnSubmit.vue';
+import FormInputPassword from './inputs/FormInputPassword.vue';
+import FormInputEmail from './inputs/FormInputEmail.vue';
+import Logo from '../Logo.vue';
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -13,28 +14,28 @@ const handleSubmit = async (values: any) => {
   try {
     if (values) {
       await authStore.login(values);
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      console.log('user',user);
-      
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      console.log('user', user);
+
       if (user && Object.keys(user).length > 0) {
         UseSweetAlert.fire({
-          icon: "success",
-          title: "Bienvenido",
-          text: "Logueado correctamente",
+          icon: 'success',
+          title: 'Bienvenido',
+          text: 'Logueado correctamente',
         });
-        router.push({ name: "Home" });
+        router.push({ name: 'Home' });
       } else {
         UseSweetAlert.fire({
-          icon: "error",
-          title: "Error",
-          text: "Email o Password Incorrecta",
+          icon: 'error',
+          title: 'Error',
+          text: 'Email o Password Incorrecta',
         });
       }
     }
   } catch (error: any) {
     UseSweetAlert.fire({
-      icon: "error",
-      title: "Oops...",
+      icon: 'error',
+      title: 'Oops...',
       text: `${error.response.data.msg}`,
     });
     console.error(error);
@@ -42,24 +43,38 @@ const handleSubmit = async (values: any) => {
 };
 </script>
 <template>
-  <Form class="px-3" @submit="handleSubmit">
-    <FormInputEmail />
-    <FormInputPassword name="password" />
-    <div class="row pt-3 text-center">
-      <div class="col-12">
-        <router-link :to="{ name: 'SendEmail' }" class="text-decoration-none">
-          Olvide mi contraseña
-        </router-link>
-      </div>
-      <div class="col-12 my-2">Todavia no tenes una cuenta?</div>
-      <div class="col-12">
-        <router-link :to="{ name: 'Register' }" class="text-decoration-none">
-          Registrate
-        </router-link>
-      </div>
-      <div class="col-12 pt-4 pb-5">
-        <BtnSubmit class="btn" text="Enviar" />
-      </div>
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <Logo className="mx-auto w-50" />
+      <h2
+        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+      >
+        Iniciar Sesión
+      </h2>
     </div>
-  </Form>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <Form class="px-3" @submit="handleSubmit">
+        <FormInputEmail />
+        <FormInputPassword name="password" />
+        <div class="row pt-3 text-center">
+          <div class="col-12">
+            
+          </div>
+          <div class="col-12 my-2">Todavia no tenes una cuenta?</div>
+          <div class="col-12">
+            <router-link
+              :to="{ name: 'Register' }"
+              class="text-decoration-none"
+            >
+              Registrate
+            </router-link>
+          </div>
+          <div class="col-12 pt-4 pb-5">
+            <BtnSubmit class="btn" text="Enviar" />
+          </div>
+        </div>
+      </Form>
+    </div>
+  </div>
 </template>

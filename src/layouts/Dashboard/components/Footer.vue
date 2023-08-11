@@ -9,6 +9,6 @@
   .footer {
     margin-top: 3rem;
     min-height: 3.5rem;
-    background-color: #18a0fb;
+    background-color: #f4f4f4;
   }
 </style>

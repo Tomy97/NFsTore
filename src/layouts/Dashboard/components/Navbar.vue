@@ -1,52 +1,11 @@
-<template>
-  
-  <nav class="navbar bg-white px-0 px-lg-5 py-3 sticky z-10 top-0">
-    <div class="container mx-auto">
-      <div>
-        <h4 class="font-bold">
-          <span class="text-primary">NF</span>
-          s
-          <span class="text-primary">T</span>
-          ore
-        </h4>
-      </div>
-      <button class="navbar-toggler lg:hidden" type="button" @click="toggleNavMenu">
-        <i class="bi bi-list"></i>
-      </button>
-      <div class="flex justify-end space-x-2">
-        <template v-for="(item, index) of menuLinks" :key="index">
-          <router-link :to="{ name: item.name }" class="flex items-center nav-link text-capitalize text-black font-normal">
-            {{ item.text }}
-          </router-link>
-        </template>
-        <div v-if="isAuth">
-          <router-link :to="{ name: 'Profile' }" class="text-black text-decoration-none">
-            <span class="font-bold">
-              profile
-            </span>
-          </router-link>
-          <button class="btn btn-lg font-bold">
-            <router-link :to="{ name: 'Wallet' }" class="text-black text-decoration-none">
-              <i class="bi bi-wallet"></i>
-            </router-link>
-          </button>
-
-          <button class="btn btn-lg text-danger font-bold" @click="logOut">
-            <i class="bi bi-box-arrow-in-right"></i>
-          </button>
-        </div>
-        <div v-else>
-          <BtnDinamic :path="{ name: 'Login' }" text="Login" />
-        </div>
-      </div>
-    </div>
-  </nav>
-</template>
-
 <script setup lang="ts">
+import { ref, Transition } from 'vue';
 import { useRouter } from 'vue-router';
 import BtnDinamic from '../../../components/buttons/BtnDinamic.vue';
 import { useAuthStore } from '../../../store/useAuthStore';
+import { storeToRefs } from 'pinia';
+import Logo from '../../../components/Logo.vue';
+import { ChevronDownIcon, PhoneIcon } from '@heroicons/vue/solid';
 
 const menuLinks = [
   {
@@ -66,38 +25,83 @@ const menuLinks = [
     name: 'Crear',
   },
 ];
+const isMobileMenuOpen = ref<boolean>(false);
 
-const { isAuth, logOut } = useAuthStore();
+const authStore = useAuthStore();
+
+const { isAuth, user } = storeToRefs(authStore);
+
 const router = useRouter();
 
 const toggleNavMenu = () => {
-  const navbar = document.querySelector('.navbar-collapse');
-  // navbar.classList.toggle('show');
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
-
 </script>
-
-<style scoped>
-/* .navbar-toggler {
-  border: none;
-  background-color: transparent;
-  outline: none;
+<template>
+  <header class="bg-white">
+    <nav class="mx-auto flex items-center justify-between p-6 md:px-8">
+      <div class="flex items-center">
+        <router-link :to="{ name: 'Home' }" class="-m-1.5 p-1.5">
+          <Logo class="w-16" />
+        </router-link>
+      </div>
+      <div class="lg:hidden">
+        <button class="navbar-toggler" type="button" @click="toggleNavMenu">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+      <div class="hidden lg:flex space-x-2">
+        <!-- Enlaces del menú -->
+        <template v-for="(item, index) of menuLinks" :key="index">
+          <router-link
+            :to="{ name: item.name }"
+            class="block text-black capitalize"
+          >
+            {{ item.text }}
+          </router-link>
+        </template>
+        <div v-if="authStore.isAuth" class="space-x-2">
+          <!-- Botones de autenticación -->
+        </div>
+        <div v-else>
+          <BtnDinamic :path="{ name: 'Login' }" text="Login" />
+        </div>
+      </div>
+    </nav>
+    <Transition name="fade">
+      <div v-if="isMobileMenuOpen" class="md:hidden">
+        <div class="bg-white p-4">
+          <div class="space-y-2">
+            <template v-for="(item, index) of menuLinks" :key="index">
+              <router-link
+                :to="{ name: item.name }"
+                class="block text-black capitalize"
+              >
+                {{ item.text }}
+              </router-link>
+            </template>
+          </div>
+          <div class="mt-4 text-center">
+            <div v-if="authStore.isAuth" class="space-x-2">
+              <!-- Botones de autenticación -->
+            </div>
+            <div v-else>
+              <BtnDinamic :path="{ name: 'Login' }" text="Login" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </header>
+</template>
+<style lang="scss" scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
 }
 
-@media (min-width: 992px) {
-  .navbar-toggler {
-    display: none;
-  }
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
-
-.navbar-collapse {
-  transition: max-height 0.3s ease;
-  max-height: 0;
-  overflow: hidden;
-}
-
-.navbar-collapse.show {
-  max-height: 500px;
-} */
-
 </style>

@@ -6,11 +6,11 @@ defineProps<{
 </script>
 <template>
   <div class="container-fluid">
-    <div class="row justify-content-center pt-5">
-      <div class="col-md-6 col-lg-5 col-xl-4">
+    <div class="grid place-items-center pt-5">
+      <div class="grid place-items-center">
         <div class="card rounded-3 border-0 shadow">
-          <div class="card-body">
-            <div class="row">
+          <div class="bg-white shadow-md rounded-md p-6">
+            <div class="flex flex-row">
               <div class="col-12 pt-5 text-center">
                 <h2 v-if="title">
                   {{ title }}

@@ -1,38 +1,46 @@
 <script setup lang="ts">
-import { defineRule } from "vee-validate";
-import { required, email } from "@vee-validate/rules";
-import useInputField from "../../../composables/UseInputField";
+import { defineRule } from 'vee-validate';
+import { required, email } from '@vee-validate/rules';
+import useInputField from '../../../composables/UseInputField';
 
-defineRule("required", required);
-defineRule("email", email);
+defineRule('required', required);
+defineRule('email', email);
 
 const props = defineProps({
   label: {
     type: String,
-    default: "Email",
+    default: 'Email',
   },
   name: {
     type: String,
-    default: "email",
+    default: 'email',
   },
 });
 
-const { input, errorMessage } = useInputField(props.name, "email", {
+const { input, errorMessage } = useInputField(props.name, 'email', {
   required: required,
   email: true,
 });
 </script>
 <template>
-  <div class="login__field">
-    <input
-      type="email"
-      class="login__input"
-      :class="errorMessage ? 'space-bottom-style' : ''"
-      placeholder="Email"
-      v-model='input'
-      :required="required"
-      autocomplete="off"
-    />
+  <div>
+    <label
+      for="email"
+      class="block text-sm font-medium leading-6 text-gray-900"
+      >{{ props.label }}</label
+    >
+    <div class="mt-2">
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        :class="errorMessage ? 'space-bottom-style' : ''"
+        :required="required"
+        v-model="input"
+        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      />
+    </div>
     <span class="login__error__text">{{ errorMessage }}</span>
   </div>
 </template>
