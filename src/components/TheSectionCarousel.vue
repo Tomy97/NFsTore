@@ -20,10 +20,10 @@ console.log('nfstore', nftStore.nfts);
     <AppSwiper>
       <template #slide-component>
         <swiper-slide v-for="item, index of nftStore.nfts" :key="index">
-          <AppCardNft
+          <!-- <AppCardNft
             :src="item.imageUrl"
             :title="item.name"
-            :user="item.owner.userName"
+            :user="item.owner"
             :price="item.price"
           >
             <template #button-components>
@@ -33,7 +33,7 @@ console.log('nfstore', nftStore.nfts);
                 @click="handleReceiveData(item)"
               />
             </template>
-          </AppCardNft>
+          </AppCardNft> -->
         </swiper-slide>
       </template>
     </AppSwiper>

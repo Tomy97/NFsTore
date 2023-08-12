@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { Swiper } from "swiper/vue";
-  import { Autoplay, Pagination } from "swiper";
+  import { Autoplay, Pagination } from "swiper/modules";
   import "swiper/scss";
   import "swiper/scss/navigation";
   import "swiper/scss/pagination";
