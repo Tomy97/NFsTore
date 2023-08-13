@@ -1,5 +1,5 @@
 <template>
-  <main class="min-vh-100 d-flex align-items-center">
+  <main class="min-h-screen flex justify-center">
     <router-view />
   </main>
 </template>

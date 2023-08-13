@@ -43,7 +43,9 @@ const handleSubmit = async (values: any) => {
 };
 </script>
 <template>
-  <div class="flex min-h-full flex-col justify-center px-2 md:px-6 py-12 lg:px-8">
+  <div
+    class="flex min-h-full flex-col justify-center px-2 md:px-6 py-12 lg:px-8"
+  >
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <div class="flex justify-center">
         <Logo className="w-32 sm:w-20 md:w-40 lg:w-120 xl:w-150" />
@@ -59,23 +61,20 @@ const handleSubmit = async (values: any) => {
       <Form class="px-3" @submit="handleSubmit">
         <FormInputEmail />
         <FormInputPassword name="password" />
-        <div class="flex flex-row pt-3 text-center">
-          <div class="">
-            
-          </div>
-          <div class="">Todavia no tenes una cuenta?</div>
-          <div class="">
-            <router-link
-              :to="{ name: 'Register' }"
-              class="text-decoration-none"
-            >
-              Registrate
-            </router-link>
-          </div>
-          <div class="grid grid-cols-12">
-            <BtnSubmit class="btn" text="Enviar" />
-          </div>
+        <router-link
+          :to="{ name: 'SendEmail' }"
+          class="font-semibold text-indigo-600 hover:text-indigo-500"
+        >
+          Olvide mi contraseña
+        </router-link>
+        <div class="text-sm text-center mt-4"></div>
+        <div class="">Todavia no tenes una cuenta?</div>
+        <div class="">
+          <router-link :to="{ name: 'Register' }" class="text-decoration-none">
+            Registrate
+          </router-link>
         </div>
+        <BtnSubmit class="btn" text="Enviar" />
       </Form>
     </div>
   </div>
