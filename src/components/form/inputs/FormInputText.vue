@@ -22,7 +22,6 @@ const { input, errorMessage } = useInputField(props.name, props.label, {
     <input
       type="text"
       class="login__input"
-      :class="errorMessage ? 'space-bottom-style' : ''"
       :placeholder="placeholder"
       v-model="input"
       :required="required"
@@ -31,8 +30,3 @@ const { input, errorMessage } = useInputField(props.name, props.label, {
     <span class="login__error__text">{{ errorMessage }}</span>
   </div>
 </template>
-<style lang="scss" scoped>
-.space-bottom-style {
-  margin-bottom: 0.8rem;
-}
-</style>

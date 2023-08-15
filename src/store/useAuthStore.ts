@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 import { IUser } from '../interfaces/IUser';
 import { loginService } from '../services/auth.service';
 import { useRouter } from 'vue-router';
-import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 export const useAuthStore = defineStore(
   'auth',
@@ -50,8 +49,6 @@ export const useAuthStore = defineStore(
     };
   },
   {
-    persist: {
-      storage: localStorage,
-    },
-  },
+    persist: true,
+  }
 );
