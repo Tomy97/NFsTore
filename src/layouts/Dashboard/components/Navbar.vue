@@ -5,7 +5,7 @@ import BtnDinamic from '../../../components/buttons/BtnDinamic.vue';
 import { useAuthStore } from '../../../store/useAuthStore';
 import { storeToRefs } from 'pinia';
 import Logo from '../../../components/Logo.vue';
-import { ChevronDownIcon, PhoneIcon } from '@heroicons/vue/solid';
+import BtnLogout from '../../../components/buttons/BtnLogout.vue';
 
 const menuLinks = [
   {
@@ -28,11 +28,6 @@ const menuLinks = [
 const isMobileMenuOpen = ref<boolean>(false);
 
 const authStore = useAuthStore();
-
-const { isAuth, user } = storeToRefs(authStore);
-
-const router = useRouter();
-
 const toggleNavMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
@@ -61,7 +56,13 @@ const toggleNavMenu = () => {
           </router-link>
         </template>
         <div v-if="authStore.isAuth" class="space-x-2">
-          <!-- Botones de autenticación -->
+          <span>
+            {{ authStore.user?.userName }}
+          </span>
+          <button>
+
+          </button>
+          <BtnLogout @click="authStore.logOut" />
         </div>
         <div v-else>
           <BtnDinamic :path="{ name: 'Login' }" text="Login" />

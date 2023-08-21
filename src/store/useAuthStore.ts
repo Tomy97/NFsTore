@@ -1,54 +1,37 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { IUser } from '../interfaces/IUser';
 import { loginService } from '../services/auth.service';
 import { useRouter } from 'vue-router';
+import jwtDecode from 'jwt-decode';
 
 export const useAuthStore = defineStore(
   'auth',
   () => {
     const router = useRouter();
-    const user = ref<IUser>({ user: '' });
+    const user = ref<IUser | null>(null);
+    const isAuth = ref(false);
 
-    const isAuth = computed(() => user.value.loggedIn);
-    const login = async (userData: IUser) => {
-      try {
-        let { token, userName, avatar, email, statusCode, message } =
-          await loginService(userData);
-        console.log(userName);
-
-        if (token) {
-          localStorage.setItem(
-            'user',
-            JSON.stringify({ userName, avatar, email, loggedIn: true }),
-          );
-          localStorage.setItem('token', JSON.stringify(token));
-          user.value = JSON.parse(localStorage.getItem('user') || '{}');
-        } else {
-          throw new Error(`Error en el login: ${statusCode} - ${message}`);
-        }
-      } catch (error) {
-        console.error('Error en el login:', error);
-      }
+    const loginStore = async (userData: IUser) => {
+      const data = await loginService(userData);
+      const decode: IUser = jwtDecode(data.token);
+      user.value = decode;
+      isAuth.value = true;
     };
 
     const logOut = async () => {
       localStorage.clear();
       router.push({ name: 'Login' });
     };
-    const getToken = () => {
-      return localStorage.getItem('token');
-    };
 
     return {
       user,
       isAuth,
-      login,
+      loginStore,
       logOut,
-      getToken,
     };
   },
   {
     persist: true,
-  }
+  },
 );

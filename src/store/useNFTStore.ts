@@ -10,10 +10,9 @@ export const useNFTStore = defineStore('nft', () => {
   const nfts = ref<INft[]>([]);
   const selectedNFT = ref<INft>({} as INft);
   const authStore = useAuthStore();
-  const token = authStore.getToken();
   const router = useRouter();
 
-  const formattedToken = token ? token.replace(/"/g, '') : '';
+  const formattedToken = authStore.user;
 
   const headers = {
     Authorization: `Bearer ${formattedToken}`,
@@ -57,7 +56,7 @@ export const useNFTStore = defineStore('nft', () => {
           text: 'No se Pudo realizar la compra',
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       UseSweetAlert.fire({
         icon: 'error',
         title: 'Error',
