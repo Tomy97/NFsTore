@@ -5,7 +5,7 @@
   }>();
 </script>
 <template>
-  <router-link :to="path" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  <router-link :to="path" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
     {{ text }}
   </router-link>
 </template>

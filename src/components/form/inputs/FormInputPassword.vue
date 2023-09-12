@@ -29,7 +29,7 @@ const { input, errorMessage } = useInputField(props.name, 'contraseña', {
 });
 </script>
 <template>
-  <div :class="errorMessage ? 'form__error__text' : ''">
+  <div class="relative mb-7">
     <div class="flex items-center justify-between">
       <label
         for="password"

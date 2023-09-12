@@ -23,14 +23,13 @@ const { input, errorMessage } = useInputField(props.name, 'email', {
 });
 </script>
 <template>
-  <div :class="errorMessage ? 'form__error__text' : ''">
+  <div class="relative mb-7">
     <label
       for="email"
       class="block text-sm font-medium leading-6 text-gray-900"
       >{{ props.label }}</label
     >
     <input
-      id="email"
       name="email"
       type="email"
       autocomplete="email"
