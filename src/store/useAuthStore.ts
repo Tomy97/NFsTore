@@ -17,6 +17,8 @@ export const useAuthStore = defineStore(
       const decode: IUser = jwtDecode(data.token);
       user.value = decode;
       isAuth.value = true;
+      localStorage.setItem('token', data.token);
+
     };
 
     const logOut = async () => {

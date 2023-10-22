@@ -8,7 +8,9 @@ export const useCollectionStore = defineStore("collection", () => {
   const collections = ref<ICollection[]>([]);
   const selectedCollection = ref<ICollection>({} as ICollection);
   const authStore = useAuthStore();
-  const token = authStore.getToken();
+  // const token = authStore.getToken();
+  const token = localStorage.getItem('token');
+  
   const formattedToken = token ? token.replace(/"/g, '') : '';
   const headers = {
     Authorization: `Bearer ${formattedToken}`,

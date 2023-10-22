@@ -29,10 +29,15 @@ export default defineComponent({
       await nftStore.buyNFT(selectedNFT);
     };
 
+    const getImage = (imagePath) => {
+      return `http://localhost:3000/${imagePath}`
+    }
+
     return {
       selectedNFT,
       ownerPercentage,
-      handleBuying
+      handleBuying,
+      getImage
     };
   }
 });
@@ -44,7 +49,8 @@ export default defineComponent({
         <div class="row px-3 px-lg-5">
           <div class="col-12 col-lg-5 text-center">
             <img
-              :src="selectedNFT.imagePath"
+              :src=getImage(selectedNFT.imagePath)
+              _:src="{selectedNFT.imagePath}"
               :alt="selectedNFT.name"
               class="img-width rounded img-fluid"
             />
