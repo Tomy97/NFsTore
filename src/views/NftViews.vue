@@ -46,8 +46,10 @@ export default defineComponent({
   <section class="container">
     <div class="row">
       <AppCard else #body>
-        <div class="row px-3 px-lg-5">
-          <div class="col-12 col-lg-5 text-center">
+        <!-- <div class="row px-3 px-lg-5"> -->
+        <div class="">
+          <!-- <div class="col-12 col-lg-5 text-center"> -->
+          <div class="">
             <img
               :src=getImage(selectedNFT.imagePath)
               _:src="{selectedNFT.imagePath}"
